@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>BEAR.AppKata API</title>
+<link rel="profile" href="https://bearsunday.github.io/BEAR.ApiDoc/alps/apidoc.xml">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/3.0.1/github-markdown.min.css">
+<link rel="stylesheet" href="https://bearsunday.github.io/BEAR.ApiDoc/apidoc.css">
+</head>
+<body>
+<div class="markdown-body">
+<h1>BEAR.AppKata API</h1>
+<p>BEAR.Sunday reference application API</p>
+
+<h2>Endpoints</h2>
+<table>
+<thead>
+<tr>
+  <th>Path</th>
+  <th>Method</th>
+  <th>Params</th>
+  <th>Type</th>
+  <th>Description</th>
+  <th>Meta</th>
+  <th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td rowspan="1" class="path-cell" id="path-index">/index</td>
+  <td rowspan="1" class="method-cell"><span class="ti safe"></span>GET</td>
+  <td><span class="param">name</span></td>
+  <td><span class="badge type-string">string</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+  <td rowspan="1"></td>
+</tr>
+<tr>
+  <td rowspan="1" class="path-cell" id="path-admin/index">/admin/index</td>
+  <td class="method-cell"><span class="ti safe"></span>GET<div class="method-alps"><a href="alps.html#goAdminIndex" class="alps-link">goAdminIndex</a></div></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td><a href="#AdminIndex" class="schema-link">AdminIndex</a></td>
+</tr>
+<tr>
+  <td rowspan="1" class="path-cell" id="path-admin/profile">/admin/profile</td>
+  <td rowspan="1" class="method-cell"><span class="ti safe"></span>GET<div class="method-alps"><a href="alps.html#goAdminProfile" class="alps-link">goAdminProfile</a></div></td>
+  <td><span class="param">id</span><span class="req">*</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+  <td rowspan="1"><a href="#AdminProfile" class="schema-link">AdminProfile</a></td>
+</tr>
+<tr>
+  <td rowspan="1" class="path-cell" id="path-cache/admin-dashboard">/cache/admin-dashboard</td>
+  <td rowspan="1" class="method-cell"><span class="ti safe"></span>GET<div class="method-alps"><a href="alps.html#goCacheAdminDashboard" class="alps-link">goCacheAdminDashboard</a></div></td>
+  <td><span class="param">id</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+  <td rowspan="1"><a href="#CacheAdminDashboard" class="schema-link">CacheAdminDashboard</a></td>
+</tr>
+<tr>
+  <td rowspan="3" class="path-cell" id="path-cache/admin-summary">/cache/admin-summary</td>
+  <td rowspan="1" class="method-cell"><span class="ti safe"></span>GET<div class="method-alps"><a href="alps.html#goCacheAdminSummary" class="alps-link">goCacheAdminSummary</a></div></td>
+  <td><span class="param">id</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+  <td rowspan="1"><a href="#CacheAdminSummary" class="schema-link">CacheAdminSummary</a></td>
+</tr>
+<tr>
+  
+  <td rowspan="2" class="method-cell"><span class="ti idempotent"></span>PUT<div class="method-alps"><a href="alps.html#doUpdateCacheAdminSummary" class="alps-link">doUpdateCacheAdminSummary</a></div></td>
+  <td><span class="param">id</span><span class="req">*</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+  <td rowspan="2"><a href="#WriteResponse" class="schema-link">WriteResponse</a></td>
+</tr>
+<tr>
+  
+  
+  <td><span class="param">displayName</span><span class="req">*</span></td>
+  <td><span class="badge type-string">string</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      <span class="badge constraint">minLength: 1</span>
+    </div></td>
+  
+</tr>
+<tr>
+  <td rowspan="1" class="path-cell" id="path-user/index">/user/index</td>
+  <td class="method-cell"><span class="ti safe"></span>GET</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+
+</tbody>
+</table>
+
+<h2>Objects</h2>
+<div class="object-section" id="AdminIndex">
+<h3 class="object-name"><a href="schemas/admin_index.json" class="schema-file-link" title="JSON Schema">📄</a>AdminIndex</h3>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Description</th><th>Meta</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td><span class="prop-name">HELLO</span></td>
+  <td><span class="badge type-string">string</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">defaultAdminId</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      <span class="badge constraint">minimum: 1</span>
+    </div></td>
+</tr>
+<tr class="link-row">
+  <td class="prop-name"><span class="ti safe"></span><a href="#AdminProfile">goAdminProfile</a></td>
+  <td><span class="badge link">link</span></td>
+  <td class="param-desc"></td>
+  <td>
+    <div class="extra-info">
+      <span class="badge href">href: app://self/admin/profile{?id}</span>
+    </div>
+  </td>
+</tr>
+
+</tbody>
+</table>
+</div>
+<div class="object-section" id="AdminProfile">
+<h3 class="object-name"><a href="schemas/admin_profile.json" class="schema-file-link" title="JSON Schema">📄</a>AdminProfile</h3>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Description</th><th>Meta</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td><span class="prop-name">id</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      <span class="badge constraint">minimum: 1</span>
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">username</span></td>
+  <td><span class="badge type-string">string</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">displayName</span></td>
+  <td><span class="badge type-string">string</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">active</span></td>
+  <td><span class="badge type-bool">bool</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">primaryEmail</span></td>
+  <td><span class="badge type-stringnull">string|null</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">verifiedEmailCount</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      <span class="badge constraint">minimum: 0</span>
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">emails</span></td>
+  <td><span class="badge type-array">array</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">permissions</span></td>
+  <td><span class="badge type-array">array</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">allowedResources</span></td>
+  <td><span class="badge type-array">array</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">allowedPermissions</span></td>
+  <td><span class="badge type-array">array</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr class="link-row">
+  <td class="prop-name"><span class="ti safe"></span><a href="#AdminIndex">goAdminIndex</a></td>
+  <td><span class="badge link">link</span></td>
+  <td class="param-desc"></td>
+  <td>
+    <div class="extra-info">
+      <span class="badge href">href: app://self/admin/index</span>
+    </div>
+  </td>
+</tr>
+
+</tbody>
+</table>
+</div>
+<div class="object-section" id="CacheAdminDashboard">
+<h3 class="object-name"><a href="schemas/cache_admin_dashboard.json" class="schema-file-link" title="JSON Schema">📄</a>CacheAdminDashboard</h3>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Description</th><th>Meta</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td><span class="prop-name">summary</span></td>
+  <td><span class="badge type-object">object</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">id</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">dependencyUri</span></td>
+  <td><span class="badge type-string">string</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">cachePattern</span></td>
+  <td><span class="badge type-string">string</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr class="embed-row">
+  <td class="prop-name"><span class="ti semantic"></span>summary</td>
+  <td><span class="badge embed">embed</span></td>
+  <td class="param-desc"></td>
+  <td>
+    <div class="extra-info">
+      <span class="badge href">src: app://self/cache/admin-summary</span>
+    </div>
+  </td>
+</tr>
+
+</tbody>
+</table>
+</div>
+<div class="object-section" id="CacheAdminSummary">
+<h3 class="object-name"><a href="schemas/cache_admin_summary.json" class="schema-file-link" title="JSON Schema">📄</a>CacheAdminSummary</h3>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Description</th><th>Meta</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td><span class="prop-name">id</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">displayName</span></td>
+  <td><span class="badge type-string">string</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">revision</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+
+</tbody>
+</table>
+</div>
+<div class="object-section" id="WriteResponse">
+<h3 class="object-name"><a href="schemas/write_response.json" class="schema-file-link" title="JSON Schema">📄</a>WriteResponse</h3>
+<table>
+<thead>
+<tr><th>Name</th><th>Type</th><th>Description</th><th>Meta</th></tr>
+</thead>
+<tbody>
+<tr>
+  <td><span class="prop-name">id</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">message</span></td>
+  <td><span class="badge type-string">string</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">displayName</span></td>
+  <td><span class="badge type-string">string</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+<tr>
+  <td><span class="prop-name">revision</span></td>
+  <td><span class="badge type-int">int</span></td>
+  <td class="param-desc"></td>
+  <td><div class="extra-info">
+      
+    </div></td>
+</tr>
+
+</tbody>
+</table>
+</div>
+
+
+
+
+
+
+</div>
+</body>
+</html>

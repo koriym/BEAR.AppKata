@@ -4,13 +4,29 @@ declare(strict_types=1);
 
 namespace MyVendor\MyProject\Http;
 
-use BEAR\Dev\Http\HttpResource;
-use MyVendor\MyProject\Hypermedia\WorkflowTest as Workflow;
+use MyVendor\MyProject\Bootstrap;
+use PHPUnit\Framework\TestCase;
 
-class WorkflowTest extends Workflow
+use function json_decode;
+use function ob_get_clean;
+use function ob_start;
+
+class WorkflowTest extends TestCase
 {
-    protected function setUp(): void
+    public function testIndex(): void
     {
-        $this->resource = new HttpResource('127.0.0.1:8080', __DIR__ . '/index.php', __DIR__ . '/log/workflow.log');
+        ob_start();
+        $code = (new Bootstrap())(
+            'app',
+            ['_GET' => ['name' => 'BEAR.Sunday'], '_POST' => []],
+            ['REQUEST_METHOD' => 'GET', 'REQUEST_URI' => '/index?name=BEAR.Sunday'],
+        );
+        $body = (string) ob_get_clean();
+
+        $this->assertSame(0, $code);
+        $this->assertSame(
+            ['greeting' => 'Hello BEAR.Sunday (page)'],
+            json_decode($body, true),
+        );
     }
 }

@@ -1,0 +1,11 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CacheAdminSummaryUpdate",
+  "type": "object",
+  "required": ["id", "displayName"],
+  "properties": {
+    "id": {"type": "integer"},
+    "displayName": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": false
+}

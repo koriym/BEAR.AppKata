@@ -1,0 +1,16 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AdminIndex",
+  "type": "object",
+  "required": ["HELLO", "defaultAdminId"],
+  "properties": {
+    "HELLO": {
+      "type": "string"
+    },
+    "defaultAdminId": {
+      "type": "integer",
+      "minimum": 1
+    }
+  },
+  "additionalProperties": false
+}

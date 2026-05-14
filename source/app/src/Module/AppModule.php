@@ -8,8 +8,11 @@ use BEAR\Package\AbstractAppModule;
 use BEAR\Package\PackageModule;
 use BEAR\Package\Provide\Router\AuraRouterModule;
 use BEAR\Resource\Module\JsonSchemaModule;
+use BEAR\Sunday\Extension\Router\RouterInterface;
 use Koriym\EnvJson\EnvJson;
+use MyVendor\MyProject\Router\CompatibleAuraRouter;
 use Ray\AuraSqlModule\AuraSqlModule;
+use Ray\Di\Scope;
 use Ray\IdentityValueModule\IdentityValueModule;
 use Ray\MediaQuery\DbQueryConfig;
 use Ray\MediaQuery\MediaQueryModule;
@@ -29,6 +32,10 @@ class AppModule extends AbstractAppModule
         $appDir = $this->appMeta->appDir;
 
         $this->install(new AuraRouterModule($appDir . '/var/conf/aura.route.php'));
+        $this->bind(RouterInterface::class)
+            ->annotatedWith('primary_router')
+            ->to(CompatibleAuraRouter::class)
+            ->in(Scope::SINGLETON);
 
         $this->bind()->annotatedWith('pdo_dsn')->toInstance((string) getenv('DB_DSN'));
         $this->bind()->annotatedWith('pdo_username')->toInstance((string) getenv('DB_USER'));

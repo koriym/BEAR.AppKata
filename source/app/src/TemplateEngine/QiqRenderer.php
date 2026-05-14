@@ -70,7 +70,7 @@ HTML;
         $template->setView($view);
     }
 
-    /** @return ReflectionClass<object> */
+    /** @return ReflectionClass<ResourceObject> */
     private function getReflection(ResourceObject $ro): ReflectionClass
     {
         if ($ro instanceof WeavedInterface) {

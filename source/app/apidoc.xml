@@ -5,7 +5,8 @@
     <appName>MyVendor\MyProject</appName>
     <scheme>app</scheme>
     <docDir>docs</docDir>
-    <format>html</format>
-    <title>MyVendor.MyProject API</title>
-    <description>API Document</description>
+    <format>html,openapi,llms</format>
+    <alps>var/alps/profile.json</alps>
+    <title>BEAR.AppKata API</title>
+    <description>BEAR.Sunday reference application API</description>
 </apidoc>

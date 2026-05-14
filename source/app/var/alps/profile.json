@@ -1,0 +1,64 @@
+{
+  "$schema": "https://alps-io.github.io/schemas/alps.json",
+  "alps": {
+    "version": "1.0",
+    "doc": {
+      "value": "BEAR.AppKata read-side API semantics."
+    },
+    "descriptor": [
+      {
+        "id": "AdminIndex",
+        "type": "semantic",
+        "doc": {
+          "value": "Admin API entry point."
+        }
+      },
+      {
+        "id": "goAdminIndex",
+        "type": "safe",
+        "rt": "#AdminIndex"
+      },
+      {
+        "id": "AdminProfile",
+        "type": "semantic",
+        "doc": {
+          "value": "Admin read profile projection."
+        }
+      },
+      {
+        "id": "goAdminProfile",
+        "type": "safe",
+        "rt": "#AdminProfile"
+      },
+      {
+        "id": "CacheAdminSummary",
+        "type": "semantic",
+        "doc": {
+          "value": "Cacheable admin summary leaf resource."
+        }
+      },
+      {
+        "id": "goCacheAdminSummary",
+        "type": "safe",
+        "rt": "#CacheAdminSummary"
+      },
+      {
+        "id": "doUpdateCacheAdminSummary",
+        "type": "unsafe",
+        "rt": "#CacheAdminSummary"
+      },
+      {
+        "id": "CacheAdminDashboard",
+        "type": "semantic",
+        "doc": {
+          "value": "CacheableResponse parent resource with an embedded admin summary dependency."
+        }
+      },
+      {
+        "id": "goCacheAdminDashboard",
+        "type": "safe",
+        "rt": "#CacheAdminDashboard"
+      }
+    ]
+  }
+}
