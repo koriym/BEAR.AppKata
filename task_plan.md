@@ -4,7 +4,7 @@
 Modernize BEAR.AppKata as a BEAR.Sunday reference kata by keeping DDD write workflows intact and adding BEAR-native read-side contracts with Resource, MediaQuery, HAL, JsonSchema, and focused tests.
 
 ## Current Phase
-Final gate complete
+CI remediation after PR #2
 
 ## Non-Goals
 - Do not replace DDD/Application/Domain with BDR.
@@ -205,7 +205,9 @@ Final gate complete
 - Added cache showcase resources/tests with in-memory cache override.
 - Added ApiDoc/OpenAPI CI and generated `docs/index.html`, `docs/openapi.json`, and `docs/llms.txt`.
 - Recorded MyVendor.Cms BDR and cache reference-test results in `source/app/docs/reference-test-results.md`.
-- Final local gates passed on 2026-05-15 JST: `composer cs`, `composer sa`, `composer test`, `composer doc`, and `composer audit --no-dev`.
+- Final local implementation gates passed on 2026-05-15 JST: `composer cs`, `composer sa`, `composer test`, and `composer doc`.
+- PR #2 CI remediation aligned GitHub Actions to PHP 8.5 and added explicit `doctrine/annotations` compatibility for the existing `ray/web-form-module` form interceptor.
+- `doctrine/annotations` removal is deferred; when prioritized, use `bearsunday/rector-bearsunday`.
 
 ## Decisions Made
 | Decision | Rationale |
@@ -228,4 +230,6 @@ Final gate complete
 | GitHub issues disabled on `koriym/BEAR.AppKata` | 1 | Enabled issues with `gh repo edit --enable-issues` before creating issue #1. |
 | PHPStan crashed with PHP memory limit `128M` during `composer sa` | 1 | Added `--memory-limit=1G` to the PHPStan script. |
 | PHPMD rejected the initial `AdminProfile` read model for too many public methods and short method names | 1 | Collapsed safe account data into `account()`, renamed `id()` to `adminId()`, and moved internal filtering helpers private. |
-| `composer audit --no-dev` exited non-zero because `doctrine/annotations` was abandoned | 1 | Aligned the app to the PHP 8.5 baseline, updated dependencies, removed `doctrine/annotations`, and confirmed audit passes. |
+| GitHub Actions failed Composer install under PHP 8.3 after the PHP 8.5 dependency baseline | 1 | Aligned `tests`, `compile`, and `reports` workflows to PHP 8.5. |
+| `composer run-script compile` failed in `prod-html-app` because `Doctrine\Common\Annotations\Reader` was not installed | 1 | Added `doctrine/annotations` explicitly for `ray/web-form-module` compatibility. |
+| `composer audit --no-dev` exits non-zero because `doctrine/annotations` is abandoned | 1 | Deferred annotation removal by request; future removal should use `bearsunday/rector-bearsunday`. |

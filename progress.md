@@ -25,6 +25,11 @@
   - Generated ApiDoc artifacts: `source/app/docs/index.html`, `source/app/docs/openapi.json`, and `source/app/docs/llms.txt`.
   - Final gates passed after implementation: `composer cs`, `composer sa`, `composer test`, and `composer doc`.
   - Posted completion notes and final gate results to GitHub issue #1: https://github.com/koriym/BEAR.AppKata/issues/1#issuecomment-4453997544
+  - Investigated PR #2 CI failures and confirmed install-time failures were caused by workflow PHP 8.3 running against the PHP 8.5 dependency baseline.
+  - Aligned `tests`, `compile`, and `reports` workflows to PHP 8.5, matching `apidoc`.
+  - Restored `doctrine/annotations` as an explicit compatibility dependency for `ray/web-form-module` compile-time bindings.
+  - Deferred `doctrine/annotations` removal; when it is prioritized, use `bearsunday/rector-bearsunday`.
+  - Re-ran CI-equivalent local gates for tests, compile, coverage, and ApiDoc after the CI remediation.
 - Files created/modified:
   - `task_plan.md`
   - `findings.md`
@@ -43,7 +48,11 @@
 | BEAR.AppKata coding standard | `zsh -ic 'sphp85; composer cs'` | Pass | 67 files checked, OK | pass |
 | BEAR.AppKata static analysis | `zsh -ic 'sphp85; composer sa'` | Pass | Psalm/PHPStan/PHPMD completed with exit code 0 | pass |
 | BEAR.AppKata full test suite | `zsh -ic 'sphp85; composer test'` | Pass | 52 tests, 111 assertions, OK | pass |
-| BEAR.AppKata production audit | `zsh -ic 'sphp85; composer audit --no-dev'` | No security advisories | No security vulnerability advisories found | pass |
+| BEAR.AppKata CI tests script | `zsh -ic 'sphp85; composer run-script tests'` | Pass | 52 tests, 111 assertions, OK; Psalm/PHPStan/PHPMD exited 0 | pass |
+| BEAR.AppKata compile script | `zsh -ic 'sphp85; composer run-script compile'` | Pass | prod HAL/API, HTML, and CLI compile completed; PHP 8.5 vendor deprecation warnings only | pass |
+| BEAR.AppKata coverage script | `zsh -ic 'sphp85; composer run-script pcov'` | Pass | 52 tests, 111 assertions, OK; coverage generated | pass |
+| BEAR.AppKata ApiDoc CI script | `zsh -ic 'sphp85; composer doc'` | Pass | Generated `docs/index.html`, `openapi.json`, `llms.txt` | pass |
+| BEAR.AppKata production audit | `zsh -ic 'sphp85; composer audit --no-dev'` | No security advisories | No security vulnerability advisories found; exits non-zero because `doctrine/annotations` is abandoned | deferred |
 
 ## Error Log
 | Timestamp | Error | Attempt | Resolution |
@@ -52,7 +61,9 @@
 | 2026-05-15 JST | PHPStan crashed under the default `128M` memory limit during `composer sa` | 1 | Added `--memory-limit=1G` to the PHPStan script. |
 | 2026-05-15 JST | PHPMD rejected initial `AdminProfile` shape for public method count and short `id()` name | 1 | Reduced public API to response-oriented inquiries, renamed to `adminId()`, and kept internal helpers private. |
 | 2026-05-15 JST | MyVendor.Cms cache reference tests failed in the reference working tree | 1 | Recorded the failure in `source/app/docs/reference-test-results.md` and adapted only the stable leaf invalidation pattern. |
-| 2026-05-15 JST | `composer audit --no-dev` exited non-zero due to abandoned `doctrine/annotations` | 1 | Updated dependencies after the PHP 8.5 baseline alignment; `doctrine/annotations` was removed and audit now passes. |
+| 2026-05-15 JST | GitHub Actions `tests`, `compile`, and `reports` failed during Composer install | 1 | Changed workflow PHP from 8.3 to 8.5 to match the app dependency baseline. |
+| 2026-05-15 JST | `composer run-script compile` failed in `prod-html-app` with `Doctrine\Common\Annotations\Reader` not found | 1 | Added `doctrine/annotations` explicitly for the existing `ray/web-form-module` annotation-based form interceptor. |
+| 2026-05-15 JST | `composer audit --no-dev` exits non-zero due to abandoned `doctrine/annotations` | 1 | Deferred annotation removal by request; future removal should use `bearsunday/rector-bearsunday`. |
 
 ## 5-Question Reboot Check
 | Question | Answer |
