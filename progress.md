@@ -45,27 +45,27 @@
 | Test | Input | Expected | Actual | Status |
 |------|-------|----------|--------|--------|
 | Not run | Planning only | No implementation tests required yet | Not run | pending |
-| MyVendor.Cms BDR reference tests | `zsh -ic 'sphp85; vendor/bin/phpunit tests/Smoke/MediaQuerySamplesTest.php tests/Smoke/FakeSqlQueryTest.php'` | Reference tests pass | 7 tests, 36 assertions, OK | pass |
-| MyVendor.Cms cache reference tests | `zsh -ic 'sphp85; vendor/bin/phpunit tests/Resource/App/Cache'` | Record result and continue on reference failure | 14 tests, 58 assertions, 4 failures, 4 warnings | recorded-fail |
-| MyVendor.Cms hypermedia reference tests | `zsh -ic 'sphp85; vendor/bin/phpunit tests/Hypermedia'` | Reference tests pass | 13 tests, 20 assertions, OK | pass |
-| BEAR.AppKata targeted modernized suite | `zsh -ic 'sphp85; vendor/bin/phpunit ddd/core/tests/Infrastructure/Result tests/Resource/App/Admin tests/Hypermedia tests/Smoke tests/Resource/App/Cache'` | Pass | 21 tests, 71 assertions, OK | pass |
-| BEAR.AppKata async script syntax | `zsh -ic 'sphp85; php -l bin/async.php'` | Pass | No syntax errors detected | pass |
-| BEAR.AppKata ApiDoc generation | `zsh -ic 'sphp85; composer doc'` | Generate html, openapi, llms | Generated `docs/index.html`, `openapi.json`, `llms.txt` | pass |
-| BEAR.AppKata coding standard | `zsh -ic 'sphp85; composer cs'` | Pass | 67 files checked, OK | pass |
-| BEAR.AppKata static analysis | `zsh -ic 'sphp85; composer sa'` | Pass | Psalm/PHPStan/PHPMD completed with exit code 0 | pass |
-| BEAR.AppKata full test suite | `zsh -ic 'sphp85; composer test'` | Pass | 52 tests, 111 assertions, OK | pass |
-| BEAR.AppKata CI tests script | `zsh -ic 'sphp85; composer run-script tests'` | Pass | 52 tests, 111 assertions, OK; Psalm/PHPStan/PHPMD exited 0 | pass |
-| BEAR.AppKata compile script | `zsh -ic 'sphp85; composer run-script compile'` | Pass | prod HAL/API, HTML, and CLI compile completed; PHP 8.5 vendor deprecation warnings only | pass |
-| BEAR.AppKata coverage script | `zsh -ic 'sphp85; composer run-script pcov'` | Pass | 52 tests, 111 assertions, OK; coverage generated | pass |
-| BEAR.AppKata ApiDoc CI script | `zsh -ic 'sphp85; composer doc'` | Pass | Generated `docs/index.html`, `openapi.json`, `llms.txt` | pass |
-| BEAR.AppKata production audit | `zsh -ic 'sphp85; composer audit --no-dev'` | No security advisories | No security vulnerability advisories found | pass |
-| BEAR.AppKata Phase 5 hypermedia contracts | `zsh -ic 'sphp85; vendor/bin/phpunit tests/Hypermedia tests/Resource/App/Admin'` | Pass | 7 tests, 42 assertions, OK | pass |
-| BEAR.AppKata annotation conversion compile | `zsh -ic 'sphp85; composer run-script compile'` | Pass without Doctrine annotations | prod HAL/API, HTML, and CLI compile completed; PHP 8.5 vendor deprecation warnings only | pass |
-| BEAR.AppKata annotation conversion audit | `zsh -ic 'sphp85; composer audit'` | No security advisories | No security vulnerability advisories found | pass |
-| BEAR.AppKata annotation conversion coding standard | `zsh -ic 'sphp85; composer cs'` | Pass | 68 files checked, OK | pass |
-| BEAR.AppKata annotation conversion static analysis | `zsh -ic 'sphp85; composer sa'` | Pass | Psalm/PHPStan/PHPMD completed with exit code 0; vendor PHP 8.5 deprecation warnings only | pass |
-| BEAR.AppKata annotation conversion full test suite | `zsh -ic 'sphp85; composer test'` | Pass | 68 tests, 166 assertions, OK | pass |
-| BEAR.AppKata form validation attribute contract | `zsh -ic 'sphp85; vendor/bin/phpunit tests/Resource/Page/FormValidationAttributeTest.php'` | Pass | 15 tests, 30 assertions, OK | pass |
+| MyVendor.Cms BDR reference tests | `vendor/bin/phpunit tests/Smoke/MediaQuerySamplesTest.php tests/Smoke/FakeSqlQueryTest.php` | Reference tests pass | 7 tests, 36 assertions, OK | pass |
+| MyVendor.Cms cache reference tests | `vendor/bin/phpunit tests/Resource/App/Cache` | Record result and continue on reference failure | 14 tests, 58 assertions, 4 failures, 4 warnings | recorded-fail |
+| MyVendor.Cms hypermedia reference tests | `vendor/bin/phpunit tests/Hypermedia` | Reference tests pass | 13 tests, 20 assertions, OK | pass |
+| BEAR.AppKata targeted modernized suite | `vendor/bin/phpunit ddd/core/tests/Infrastructure/Result tests/Resource/App/Admin tests/Hypermedia tests/Smoke tests/Resource/App/Cache` | Pass | 21 tests, 71 assertions, OK | pass |
+| BEAR.AppKata async script syntax | `php -l bin/async.php` | Pass | No syntax errors detected | pass |
+| BEAR.AppKata ApiDoc generation | `composer doc` | Generate html, openapi, llms | Generated `docs/index.html`, `openapi.json`, `llms.txt` | pass |
+| BEAR.AppKata coding standard | `composer cs` | Pass | 67 files checked, OK | pass |
+| BEAR.AppKata static analysis | `composer sa` | Pass | Psalm/PHPStan/PHPMD completed with exit code 0 | pass |
+| BEAR.AppKata full test suite | `composer test` | Pass | 52 tests, 111 assertions, OK | pass |
+| BEAR.AppKata CI tests script | `composer run-script tests` | Pass | 52 tests, 111 assertions, OK; Psalm/PHPStan/PHPMD exited 0 | pass |
+| BEAR.AppKata compile script | `composer run-script compile` | Pass | prod HAL/API, HTML, and CLI compile completed; PHP 8.5 vendor deprecation warnings only | pass |
+| BEAR.AppKata coverage script | `composer run-script pcov` | Pass | 52 tests, 111 assertions, OK; coverage generated | pass |
+| BEAR.AppKata ApiDoc CI script | `composer doc` | Pass | Generated `docs/index.html`, `openapi.json`, `llms.txt` | pass |
+| BEAR.AppKata production audit | `composer audit --no-dev` | No security advisories | No security vulnerability advisories found | pass |
+| BEAR.AppKata Phase 5 hypermedia contracts | `vendor/bin/phpunit tests/Hypermedia tests/Resource/App/Admin` | Pass | 7 tests, 42 assertions, OK | pass |
+| BEAR.AppKata annotation conversion compile | `composer run-script compile` | Pass without Doctrine annotations | prod HAL/API, HTML, and CLI compile completed; PHP 8.5 vendor deprecation warnings only | pass |
+| BEAR.AppKata annotation conversion audit | `composer audit` | No security advisories | No security vulnerability advisories found | pass |
+| BEAR.AppKata annotation conversion coding standard | `composer cs` | Pass | 68 files checked, OK | pass |
+| BEAR.AppKata annotation conversion static analysis | `composer sa` | Pass | Psalm/PHPStan/PHPMD completed with exit code 0; vendor PHP 8.5 deprecation warnings only | pass |
+| BEAR.AppKata annotation conversion full test suite | `composer test` | Pass | 68 tests, 166 assertions, OK | pass |
+| BEAR.AppKata form validation attribute contract | `vendor/bin/phpunit tests/Resource/Page/FormValidationAttributeTest.php` | Pass | 15 tests, 30 assertions, OK | pass |
 
 ## Error Log
 | Timestamp | Error | Attempt | Resolution |

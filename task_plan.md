@@ -135,7 +135,7 @@ Phase 5 verified
 - [x] Add architecture/conventions documentation for read models, links, schema, and Page/App split.
 - [x] Document BDR result class placement, affected-row samples, hypermedia story-test rules, smoke-test layers, cache showcase rules, and async runtime constraints.
 - [x] Add `docs/reference-test-results.md` and record MyVendor.Cms reference-test results for the features being adapted.
-- [x] Run `zsh -ic 'sphp85; composer test'` after dependency changes.
+- [x] Run `composer test` after dependency changes.
 - **Status:** complete
 
 ### Phase 3: Admin Profile Read Contract
@@ -208,9 +208,9 @@ Phase 5 verified
 - **Status:** proposed; useful as a follow-up cleanup after Admin/User read contracts stabilize.
 
 ### Phase 12: Final Quality Gate
-- [x] Run `zsh -ic 'sphp85; composer cs'`.
-- [x] Run `zsh -ic 'sphp85; composer sa'`.
-- [x] Run `zsh -ic 'sphp85; composer test'`.
+- [x] Run `composer cs`.
+- [x] Run `composer sa`.
+- [x] Run `composer test`.
 - [x] Update issue #1 with completion notes and any deliberate deferrals.
 - **Status:** complete
 
