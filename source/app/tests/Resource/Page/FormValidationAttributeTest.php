@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace MyVendor\MyProject\Resource\Page;
 
+use MyVendor\MyProject\Annotation\FormValidation;
 use MyVendor\MyProject\Resource\Page\Admin\CodeVerify;
 use MyVendor\MyProject\Resource\Page\Admin\ContactDemo;
 use MyVendor\MyProject\Resource\Page\Admin\FieldsetDemo;
@@ -21,7 +22,6 @@ use MyVendor\MyProject\Resource\Page\Admin\UploadDemo;
 use MyVendor\MyProject\Resource\Page\User\Login as UserLogin;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
-use Ray\WebFormModule\Annotation\FormValidation;
 use ReflectionClass;
 
 final class FormValidationAttributeTest extends TestCase
@@ -48,7 +48,7 @@ final class FormValidationAttributeTest extends TestCase
 
     /** @param class-string $pageClass */
     #[DataProvider('formPages')]
-    public function testFormValidationUsesPhpAttribute(string $pageClass): void
+    public function testFormValidationUsesLocalAttribute(string $pageClass): void
     {
         $method = (new ReflectionClass($pageClass))->getMethod('onPost');
 

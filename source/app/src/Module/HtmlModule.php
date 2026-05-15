@@ -12,7 +12,7 @@ use MyVendor\MyProject\Form\Customer as CustomerForm;
 use MyVendor\MyProject\TemplateEngine\QiqCustomHelpers;
 use MyVendor\MyProject\TemplateEngine\QiqModule;
 use Qiq\Helpers;
-use Ray\WebFormModule\AuraInputModule;
+use Ray\AuraSessionModule\AuraSessionModule;
 use Ray\WebFormModule\FormInterface;
 
 use function getenv;
@@ -23,7 +23,7 @@ class HtmlModule extends AbstractAppModule
 {
     protected function configure(): void
     {
-        $this->install(new AuraInputModule());
+        $this->install(new AuraSessionModule());
         $this->bind(Helpers::class)->to(QiqCustomHelpers::class);
         $this->install(
             new QiqModule(
@@ -34,6 +34,7 @@ class HtmlModule extends AbstractAppModule
                 ],
             ),
         );
+        $this->install(new FormModule());
         $this->install(new SessionAuthModule());
         $this->install(new CaptchaModule());
         $this->install(new ThrottlingModule());

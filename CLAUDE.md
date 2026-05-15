@@ -59,7 +59,7 @@ bear-app は BEAR.Sunday フレームワークをベースにした DDD + CQRS �
 - `#[AdminPasswordProtect]`: パスワード保護
 - `#[RequiredPermission]`: 権限チェック
 - `#[RateLimiter]`: レート制限
-- `#[FormValidation]`: フォーム検証
+- `@FormValidation`: フォーム検証
 
 ## 開発時の注意点
 
@@ -171,7 +171,7 @@ class YourForm extends ExtendedForm
 }
 
 // 2. Resource で使用
-#[FormValidation]
+/** @FormValidation */
 public function onPost(): static
 {
     // バリデーション済みの値を取得
