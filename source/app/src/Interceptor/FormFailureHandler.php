@@ -18,7 +18,10 @@ final class FormFailureHandler implements FailureHandlerInterface
 {
     private const FAILURE_SUFFIX = 'ValidationFailed';
 
-    /** @param MethodInvocation<object> $invocation */
+    /**
+     * @param MethodInvocation<object> $invocation
+     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
+     */
     #[Override]
     public function handle(AbstractValidation $formValidation, MethodInvocation $invocation, AbstractForm $form): mixed
     {
