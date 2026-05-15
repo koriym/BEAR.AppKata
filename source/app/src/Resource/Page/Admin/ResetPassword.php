@@ -11,13 +11,13 @@ use AppCore\Application\Admin\ResetAdminPasswordUseCase;
 use BEAR\Resource\NullRenderer;
 use Koriym\HttpConstants\ResponseHeader;
 use Koriym\HttpConstants\StatusCode;
-use MyVendor\MyProject\Annotation\FormValidation;
 use MyVendor\MyProject\Form\ExtendedForm;
 use MyVendor\MyProject\InputQuery\Admin\ResetPasswordInput;
 use MyVendor\MyProject\Resource\Page\BaseAdminPage;
 use Ray\AuraSqlModule\Annotation\Transactional;
 use Ray\Di\Di\Named;
 use Ray\InputQuery\Attribute\Input;
+use Ray\WebFormModule\Annotation\FormValidation;
 use Ray\WebFormModule\FormInterface;
 use Throwable;
 

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "774c359e21b15f30dff5c42c52a2cd24",
+    "content-hash": "fb4c02ef218f83bcce7e9d489bf5ed6b",
     "packages": [
         {
             "name": "aura/auth",
@@ -4295,28 +4295,29 @@
         },
         {
             "name": "ray/web-form-module",
-            "version": "0.6.0",
+            "version": "dev-migrate-attribute",
             "source": {
                 "type": "git",
-                "url": "https://github.com/ray-di/Ray.WebFormModule.git",
-                "reference": "4b6d33adb4a5c285278a068f3e7a5afdc4e680d9"
+                "url": "https://github.com/apple-x-co/Ray.WebFormModule.git",
+                "reference": "9f48a96b74c8b24936dc051f5cc1e56988628f42"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ray-di/Ray.WebFormModule/zipball/4b6d33adb4a5c285278a068f3e7a5afdc4e680d9",
-                "reference": "4b6d33adb4a5c285278a068f3e7a5afdc4e680d9",
+                "url": "https://api.github.com/repos/apple-x-co/Ray.WebFormModule/zipball/9f48a96b74c8b24936dc051f5cc1e56988628f42",
+                "reference": "9f48a96b74c8b24936dc051f5cc1e56988628f42",
                 "shasum": ""
             },
             "require": {
                 "aura/filter": "^2.3|3.x-dev",
                 "aura/html": "^2.5",
                 "aura/input": "^1.2",
-                "php": ">=7.0.0",
+                "php": ">=8.0.0",
+                "ray/aop": "^2.14",
                 "ray/aura-session-module": "^1.1",
-                "ray/di": "^2.7"
+                "ray/di": "^2.16"
             },
             "require-dev": {
-                "phpunit/phpunit": "^5.7.13"
+                "phpunit/phpunit": "^9.5"
             },
             "type": "library",
             "autoload": {
@@ -4324,7 +4325,31 @@
                     "Ray\\WebFormModule\\": "src/"
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
+            "autoload-dev": {
+                "psr-4": {
+                    "Ray\\WebFormModule\\": [
+                        "tests/",
+                        "tests/Fake"
+                    ]
+                }
+            },
+            "scripts": {
+                "test": [
+                    "@cs",
+                    "phpunit"
+                ],
+                "coverage": [
+                    "php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage"
+                ],
+                "cs": [
+                    "php-cs-fixer fix -v --dry-run",
+                    "phpcs --standard=./phpcs.xml src"
+                ],
+                "cs-fix": [
+                    "php-cs-fixer fix -v",
+                    "phpcbf src"
+                ]
+            },
             "license": [
                 "MIT"
             ],
@@ -4333,11 +4358,7 @@
                 "Ray.Di module",
                 "web form"
             ],
-            "support": {
-                "issues": "https://github.com/ray-di/Ray.WebFormModule/issues",
-                "source": "https://github.com/ray-di/Ray.WebFormModule/tree/1.x"
-            },
-            "time": "2018-05-27T17:34:13+00:00"
+            "time": "2026-05-15T09:00:22+00:00"
         },
         {
             "name": "rize/uri-template",
@@ -8884,11 +8905,18 @@
             "version": "dev-codex/fake-query-release-hardening",
             "alias": "1.0.x-dev",
             "alias_normalized": "1.0.9999999.9999999-dev"
+        },
+        {
+            "package": "ray/web-form-module",
+            "version": "dev-migrate-attribute",
+            "alias": "0.7.0-dev",
+            "alias_normalized": "0.7.0.0-dev"
         }
     ],
     "minimum-stability": "stable",
     "stability-flags": {
         "ray/fake-query": 20,
+        "ray/web-form-module": 20,
         "roave/security-advisories": 20
     },
     "prefer-stable": false,
@@ -8897,5 +8925,5 @@
         "php": "^8.5.0"
     },
     "platform-dev": {},
-    "plugin-api-version": "2.9.0"
+    "plugin-api-version": "2.6.0"
 }
