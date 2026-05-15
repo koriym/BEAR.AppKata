@@ -45,6 +45,7 @@
 - `AffectedRows` and `InsertedRow` fake support is mechanically feasible from explicit fixture data, but should be tracked as DML metadata result support rather than fake PDO or mutable fake database behavior.
 
 ## Technical Decisions
+
 | Decision | Rationale |
 |----------|-----------|
 | First code slice should be Admin profile read API | It demonstrates read projection, schema, HAL link, and QueryResult purity while avoiding write workflow churn. |
@@ -66,6 +67,7 @@
 | Release Ray.FakeQuery as select-focused 1.0 | The public API is small enough to stabilize now; `AffectedRows` / `InsertedRow` fixture support can be added in a later minor release without delaying the core JSON/JSONL adapter. |
 
 ## Issues Encountered
+
 | Issue | Resolution |
 |-------|------------|
 | GitHub issues were disabled for `koriym/BEAR.AppKata` | Enabled issues and created issue #1. |
