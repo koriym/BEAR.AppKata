@@ -43,8 +43,6 @@ class Delete extends BaseAdminPage
     /** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
     #[FormValidation]
     #[AdminGuard]
-    #[AdminPasswordProtect]
-    #[RequiredPermission('settings', Permission::Read)]
     #[Transactional]
     #[AdminLogout]
     public function onPost(

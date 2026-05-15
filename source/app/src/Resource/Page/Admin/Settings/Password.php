@@ -50,7 +50,6 @@ class Password extends BaseAdminPage
     #[FormValidation]
     #[AdminGuard]
     #[AdminPasswordProtect]
-    #[RequiredPermission('settings', Permission::Read)]
     public function onPost(
         #[Input]
         UpdatePasswordInput $input,
