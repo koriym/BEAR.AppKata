@@ -22,7 +22,7 @@
         "ray/di": "^2.14",
         "ray/identity-value-module": "^1.0",
         "ray/media-query": "^1.1",
-        "ray/web-form-module": "dev-migrate-attribute as 0.7.0-dev"
+        "ray/web-form-module": "dev-migrate-attribute#9f48a96b74c8b24936dc051f5cc1e56988628f42 as 0.7.0-dev"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.4",
@@ -30,7 +30,7 @@
         "bear/devtools": "^1.0",
         "koriym/sql-quality": "^0.1.7",
         "phpunit/phpunit": "^10.0",
-        "ray/fake-query": "dev-codex/fake-query-release-hardening as 1.0.x-dev",
+        "ray/fake-query": "dev-codex/fake-query-release-hardening#77d600202396518158ac87109f40d1c7d2cb279f as 1.0.x-dev",
         "rector/rector": "^2.2",
         "roave/security-advisories": "dev-latest"
     },

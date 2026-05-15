@@ -1,12 +1,16 @@
 # Findings & Decisions
 
-## Requirements
+## Requirements (initial planning assumptions; later superseded in implementation)
 - Build a modernization plan for BEAR.AppKata that avoids rework.
 - Use MyVendor.Cms as a reference, but do not modify MyVendor.Cms in this track.
 - Keep DDD/Application/Domain write workflows.
 - Modernize read-side Resource contracts first.
-- Skip CSRF/Form work.
+- Skip CSRF/Form work. (initial plan; later changed)
 - Start with Admin read side.
+
+**Updated scope**: CSRF/Form work is no longer skipped. The Form layer was migrated from
+Doctrine annotations to PHP 8 attributes (see `ray/web-form-module` dev-migrate-attribute
+branch) as part of this PR stack.
 
 ## Research Findings
 - `source/app/src/Resource/App` currently has only minimal `Index`, `Admin/Index`, and `User/Index` resources.
