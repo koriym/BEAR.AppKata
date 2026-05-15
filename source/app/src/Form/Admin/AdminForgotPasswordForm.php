@@ -5,15 +5,15 @@ declare(strict_types=1);
 namespace MyVendor\MyProject\Form\Admin;
 
 use AppCore\Infrastructure\Query\AdminQueryInterface;
+use MyVendor\MyProject\Form\AntiCsrfSetter;
 use MyVendor\MyProject\Form\ExtendedForm;
 use Ray\Di\Di\Inject;
-use Ray\WebFormModule\SetAntiCsrfTrait;
 use stdClass;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 class AdminForgotPasswordForm extends ExtendedForm
 {
-    use SetAntiCsrfTrait;
+    use AntiCsrfSetter;
 
     private AdminQueryInterface $adminQuery;
 

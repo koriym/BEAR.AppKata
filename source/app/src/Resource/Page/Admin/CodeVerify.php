@@ -12,13 +12,13 @@ use AppCore\Domain\VerificationCode\VerificationCodeNotFoundException;
 use BEAR\Resource\NullRenderer;
 use Koriym\HttpConstants\ResponseHeader;
 use Koriym\HttpConstants\StatusCode;
+use MyVendor\MyProject\Annotation\FormValidation;
 use MyVendor\MyProject\Form\ExtendedForm;
 use MyVendor\MyProject\InputQuery\Admin\CodeVerifyInput;
 use MyVendor\MyProject\Resource\Page\BaseAdminPage;
 use Ray\AuraSqlModule\Annotation\Transactional;
 use Ray\Di\Di\Named;
 use Ray\InputQuery\Attribute\Input;
-use Ray\WebFormModule\Annotation\FormValidation;
 use Ray\WebFormModule\FormInterface;
 
 use function assert;
@@ -57,7 +57,7 @@ class CodeVerify extends BaseAdminPage
         return $this;
     }
 
-    /** @FormValidation() */
+    #[FormValidation]
     #[Transactional]
     public function onPost(
         #[Input]

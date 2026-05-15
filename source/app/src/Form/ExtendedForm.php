@@ -4,9 +4,15 @@ declare(strict_types=1);
 
 namespace MyVendor\MyProject\Form;
 
+use Aura\Filter\FilterFactory;
 use Aura\Html\Helper\Input\AbstractInput;
+use Aura\Html\HelperLocatorFactory;
+use Aura\Input\BuilderInterface;
 use Aura\Input\Collection;
 use Aura\Input\Fieldset;
+use Override;
+use Ray\Di\Di\Inject;
+use Ray\Di\Di\PostConstruct;
 use Ray\WebFormModule\AbstractForm;
 use Ray\WebFormModule\SubmitInterface;
 
@@ -17,6 +23,23 @@ use function is_array;
 /** @SuppressWarnings("PHPMD.NumberOfChildren") */
 abstract class ExtendedForm extends AbstractForm implements SubmitInterface
 {
+    #[Inject]
+    #[Override]
+    public function setBaseDependencies(
+        BuilderInterface $builder,
+        FilterFactory $filterFactory,
+        HelperLocatorFactory $helperFactory,
+    ): void {
+        parent::setBaseDependencies($builder, $filterFactory, $helperFactory);
+    }
+
+    #[PostConstruct]
+    #[Override]
+    public function postConstruct(): void
+    {
+        parent::postConstruct();
+    }
+
     public function setOptions(): void
     {
         // NOTE: This method is child class override.

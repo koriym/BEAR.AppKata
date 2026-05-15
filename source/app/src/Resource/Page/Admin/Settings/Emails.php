@@ -15,13 +15,13 @@ use BEAR\Resource\NullRenderer;
 use Koriym\HttpConstants\ResponseHeader;
 use Koriym\HttpConstants\StatusCode;
 use MyVendor\MyProject\Annotation\AdminGuard;
+use MyVendor\MyProject\Annotation\FormValidation;
 use MyVendor\MyProject\Annotation\RequiredPermission;
 use MyVendor\MyProject\InputQuery\Admin\CreateEmailInput;
 use MyVendor\MyProject\Resource\Page\BaseAdminPage;
 use Ray\AuraSqlModule\Annotation\Transactional;
 use Ray\Di\Di\Named;
 use Ray\InputQuery\Attribute\Input;
-use Ray\WebFormModule\Annotation\FormValidation;
 use Ray\WebFormModule\FormInterface;
 
 class Emails extends BaseAdminPage
@@ -56,7 +56,7 @@ class Emails extends BaseAdminPage
         return $this;
     }
 
-    /** @FormValidation() */
+    #[FormValidation]
     #[AdminGuard]
     #[Transactional]
     public function onPost(

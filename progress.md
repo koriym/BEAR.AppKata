@@ -31,6 +31,10 @@
   - Deferred `doctrine/annotations` removal; when it is prioritized, use `bearsunday/rector-bearsunday`.
   - Re-ran CI-equivalent local gates for tests, compile, coverage, and ApiDoc after the CI remediation.
   - Revisited the requested scope "through Phase 5" and strengthened the HAL envelope contract test to assert rendered `_links` JSON instead of only checking `#[Link]` attributes.
+  - Confirmed PR #2 GitHub Actions were passing before starting annotation conversion.
+  - Used `bearsunday/rector-bearsunday` as the conversion tool gate; the standard rules found no remaining supported annotations.
+  - Replaced the remaining `@FormValidation()` usage with `#[FormValidation]` and an app-local Attribute-aware form module/interceptor.
+  - Removed `doctrine/annotations` from Composer dependencies; `composer why doctrine/annotations` now reports it is not installed.
 - Files created/modified:
   - `task_plan.md`
   - `findings.md`
@@ -53,8 +57,14 @@
 | BEAR.AppKata compile script | `zsh -ic 'sphp85; composer run-script compile'` | Pass | prod HAL/API, HTML, and CLI compile completed; PHP 8.5 vendor deprecation warnings only | pass |
 | BEAR.AppKata coverage script | `zsh -ic 'sphp85; composer run-script pcov'` | Pass | 52 tests, 111 assertions, OK; coverage generated | pass |
 | BEAR.AppKata ApiDoc CI script | `zsh -ic 'sphp85; composer doc'` | Pass | Generated `docs/index.html`, `openapi.json`, `llms.txt` | pass |
-| BEAR.AppKata production audit | `zsh -ic 'sphp85; composer audit --no-dev'` | No security advisories | No security vulnerability advisories found; exits non-zero because `doctrine/annotations` is abandoned | deferred |
+| BEAR.AppKata production audit | `zsh -ic 'sphp85; composer audit --no-dev'` | No security advisories | No security vulnerability advisories found | pass |
 | BEAR.AppKata Phase 5 hypermedia contracts | `zsh -ic 'sphp85; vendor/bin/phpunit tests/Hypermedia tests/Resource/App/Admin'` | Pass | 7 tests, 42 assertions, OK | pass |
+| BEAR.AppKata annotation conversion compile | `zsh -ic 'sphp85; composer run-script compile'` | Pass without Doctrine annotations | prod HAL/API, HTML, and CLI compile completed; PHP 8.5 vendor deprecation warnings only | pass |
+| BEAR.AppKata annotation conversion audit | `zsh -ic 'sphp85; composer audit'` | No security advisories | No security vulnerability advisories found | pass |
+| BEAR.AppKata annotation conversion coding standard | `zsh -ic 'sphp85; composer cs'` | Pass | 68 files checked, OK | pass |
+| BEAR.AppKata annotation conversion static analysis | `zsh -ic 'sphp85; composer sa'` | Pass | Psalm/PHPStan/PHPMD completed with exit code 0; vendor PHP 8.5 deprecation warnings only | pass |
+| BEAR.AppKata annotation conversion full test suite | `zsh -ic 'sphp85; composer test'` | Pass | 68 tests, 166 assertions, OK | pass |
+| BEAR.AppKata form validation attribute contract | `zsh -ic 'sphp85; vendor/bin/phpunit tests/Resource/Page/FormValidationAttributeTest.php'` | Pass | 15 tests, 30 assertions, OK | pass |
 
 ## Error Log
 | Timestamp | Error | Attempt | Resolution |
@@ -65,7 +75,7 @@
 | 2026-05-15 JST | MyVendor.Cms cache reference tests failed in the reference working tree | 1 | Recorded the failure in `source/app/docs/reference-test-results.md` and adapted only the stable leaf invalidation pattern. |
 | 2026-05-15 JST | GitHub Actions `tests`, `compile`, and `reports` failed during Composer install | 1 | Changed workflow PHP from 8.3 to 8.5 to match the app dependency baseline. |
 | 2026-05-15 JST | `composer run-script compile` failed in `prod-html-app` with `Doctrine\Common\Annotations\Reader` not found | 1 | Added `doctrine/annotations` explicitly for the existing `ray/web-form-module` annotation-based form interceptor. |
-| 2026-05-15 JST | `composer audit --no-dev` exits non-zero due to abandoned `doctrine/annotations` | 1 | Deferred annotation removal by request; future removal should use `bearsunday/rector-bearsunday`. |
+| 2026-05-15 JST | `composer audit --no-dev` exits non-zero due to abandoned `doctrine/annotations` | 1 | Resolved by using `bearsunday/rector-bearsunday` as the migration gate, replacing `@FormValidation()` with app-local attributes/interceptors, and removing `doctrine/annotations`. |
 
 ## 5-Question Reboot Check
 | Question | Answer |

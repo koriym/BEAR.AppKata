@@ -16,12 +16,12 @@ use Koriym\HttpConstants\ResponseHeader;
 use Koriym\HttpConstants\StatusCode;
 use MyVendor\MyProject\Annotation\AdminGuard;
 use MyVendor\MyProject\Annotation\AdminPasswordProtect;
+use MyVendor\MyProject\Annotation\FormValidation;
 use MyVendor\MyProject\Annotation\RequiredPermission;
 use MyVendor\MyProject\InputQuery\Admin\UpdatePasswordInput;
 use MyVendor\MyProject\Resource\Page\BaseAdminPage;
 use Ray\Di\Di\Named;
 use Ray\InputQuery\Attribute\Input;
-use Ray\WebFormModule\Annotation\FormValidation;
 use Ray\WebFormModule\FormInterface;
 use Throwable;
 
@@ -47,7 +47,7 @@ class Password extends BaseAdminPage
         return $this;
     }
 
-    /** @FormValidation() */
+    #[FormValidation]
     #[AdminGuard]
     #[AdminPasswordProtect]
     public function onPost(

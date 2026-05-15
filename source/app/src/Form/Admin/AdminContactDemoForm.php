@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace MyVendor\MyProject\Form\Admin;
 
+use MyVendor\MyProject\Form\AntiCsrfSetter;
 use MyVendor\MyProject\Form\ExtendedForm;
-use Ray\WebFormModule\SetAntiCsrfTrait;
 
 /**
  * @property string $mode
@@ -13,7 +13,7 @@ use Ray\WebFormModule\SetAntiCsrfTrait;
  */
 class AdminContactDemoForm extends ExtendedForm
 {
-    use SetAntiCsrfTrait;
+    use AntiCsrfSetter;
 
     public function init(): void
     {

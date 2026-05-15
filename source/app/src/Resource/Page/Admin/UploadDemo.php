@@ -7,11 +7,11 @@ namespace MyVendor\MyProject\Resource\Page\Admin;
 use Koriym\FileUpload\ErrorFileUpload;
 use Koriym\FileUpload\FileUpload;
 use MyVendor\MyProject\Annotation\AdminGuard;
+use MyVendor\MyProject\Annotation\FormValidation;
 use MyVendor\MyProject\InputQuery\Admin\UploadDemoInput;
 use MyVendor\MyProject\Resource\Page\BaseAdminPage;
 use Ray\Di\Di\Named;
 use Ray\InputQuery\Attribute\Input;
-use Ray\WebFormModule\Annotation\FormValidation;
 use Ray\WebFormModule\FormInterface;
 
 class UploadDemo extends BaseAdminPage
@@ -29,10 +29,8 @@ class UploadDemo extends BaseAdminPage
         return $this;
     }
 
-    /**
-     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
-     * @FormValidation()
-     */
+    /** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
+    #[FormValidation]
     #[AdminGuard]
     public function onPost(
         #[Input]

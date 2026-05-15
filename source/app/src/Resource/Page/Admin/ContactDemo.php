@@ -5,13 +5,13 @@ declare(strict_types=1);
 namespace MyVendor\MyProject\Resource\Page\Admin;
 
 use Koriym\HttpConstants\StatusCode;
+use MyVendor\MyProject\Annotation\FormValidation;
 use MyVendor\MyProject\Form\Admin\AdminContactDemoForm;
 use MyVendor\MyProject\Form\FormStep;
 use MyVendor\MyProject\InputQuery\Admin\ContactDemoInput;
 use MyVendor\MyProject\Resource\Page\BaseAdminPage;
 use Ray\Di\Di\Named;
 use Ray\InputQuery\Attribute\Input;
-use Ray\WebFormModule\Annotation\FormValidation;
 use Ray\WebFormModule\FormInterface;
 
 use function assert;
@@ -33,10 +33,8 @@ class ContactDemo extends BaseAdminPage
         return $this;
     }
 
-    /**
-     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
-     * @FormValidation()
-     */
+    /** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
+    #[FormValidation]
     public function onPost(
         #[Input]
         ContactDemoInput $input,

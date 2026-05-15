@@ -5,12 +5,12 @@ declare(strict_types=1);
 namespace MyVendor\MyProject\Resource\Page\User;
 
 use AppCore\Domain\Auth\AuthenticationException;
+use MyVendor\MyProject\Annotation\FormValidation;
 use MyVendor\MyProject\Annotation\UserLogin;
 use MyVendor\MyProject\InputQuery\Customer\LoginUserInput;
 use MyVendor\MyProject\Resource\Page\BaseUserPage;
 use Ray\Di\Di\Named;
 use Ray\InputQuery\Attribute\Input;
-use Ray\WebFormModule\Annotation\FormValidation;
 use Ray\WebFormModule\FormInterface;
 
 class Login extends BaseUserPage
@@ -27,10 +27,8 @@ class Login extends BaseUserPage
         return $this;
     }
 
-    /**
-     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
-     * @FormValidation()
-     */
+    /** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
+    #[FormValidation]
     #[UserLogin]
     public function onPost(
         #[Input]
