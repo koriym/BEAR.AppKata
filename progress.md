@@ -43,6 +43,11 @@
   - Replaced hard-coded Admin read fake data classes with `tests/fixtures/admin-read` JSON/JSONL files and a `FakeQueryModule`-backed `AdminReadFakeModule`.
   - Verified that the symlinked Ray.FakeQuery branch hydrates Admin entities through `#[DbQuery(factory: ...)]`, returns `null` for missing nullable row fixtures, and wraps the AdminSelection typed rowlist result.
   - Found that a plain `FakeQueryModule` override could be shadowed by an existing `MediaQueryModule` `#[DbQuery]` interceptor; fixed Ray.FakeQuery so the fake interceptor wins in override contexts, then simplified BEAR.AppKata back to direct `FakeQueryModule` installation.
+  - Reworked the Ray.FakeQuery fix from priority-based pointcut competition to interceptor binding replacement: `Ray\MediaQuery\DbQueryInterceptor` now resolves to `FakeQueryInterceptor` in override contexts.
+  - Hardened Ray.FakeQuery factory handling for 1.0 by distinguishing static and injected factories with reflection and throwing `InvalidFactoryException` for missing/non-public factories instead of silently falling back.
+  - Updated Ray.FakeQuery `DESIGN.md` to describe the actual 1.0 select-fixture scope, module replacement strategy, fixture vocabulary, factory semantics, and non-goals.
+  - Opened ray-di/Ray.FakeQuery#3 for fixture-driven `AffectedRows` / `InsertedRow` DML metadata support as a post-1.0 follow-up.
+  - Updated BEAR.AppKata to the latest Ray.FakeQuery PR #2 commit through the GitHub VCS repository and re-verified the Admin fake read slice.
 - Files created/modified:
   - `task_plan.md`
   - `findings.md`
@@ -78,6 +83,10 @@
 | BEAR.AppKata Ray.FakeQuery static analysis | `composer sa` | Pass | Psalm/PHPStan/PHPMD completed with exit code 0; vendor PHP 8.5 deprecation warnings only | pass |
 | BEAR.AppKata Ray.FakeQuery full test suite | `composer test` | Pass | 68 tests, 166 assertions, OK | pass |
 | BEAR.AppKata direct FakeQueryModule override regression | `vendor/bin/phpunit tests/Fake/FakeQueryAdminReadTest.php tests/Resource/App/Admin/ProfileTest.php tests/Hypermedia && composer cs && composer sa && composer test` | Pass | Targeted suite: 10 tests, 57 assertions; full suite: 68 tests, 166 assertions, OK | pass |
+| Ray.FakeQuery release baseline | `composer tests && composer crc && composer validate --strict` | Pass | 21 tests, 51 assertions, PHPStan/Psalm/PHPCS/composer-require-checker/composer validate all passed | pass |
+| Ray.FakeQuery PR #2 CI | GitHub Actions | Pass | Quality and Unit PHP 8.2, 8.3, 8.4, 8.5 all passed | pass |
+| BEAR.AppKata latest Ray.FakeQuery lock | `vendor/bin/phpunit tests/Fake/FakeQueryAdminReadTest.php tests/Resource/App/Admin/ProfileTest.php tests/Hypermedia && composer test` | Pass | Targeted suite: 10 tests, 57 assertions; full suite: 68 tests, 166 assertions, OK | pass |
+| BEAR.AppKata PR #2 CI after Ray.FakeQuery update | GitHub Actions | Pass | Compile, All tests, All Coverages, apidoc, and CodeRabbit all passed | pass |
 
 ## Error Log
 | Timestamp | Error | Attempt | Resolution |
@@ -89,12 +98,14 @@
 | 2026-05-15 JST | GitHub Actions `tests`, `compile`, and `reports` failed during Composer install | 1 | Changed workflow PHP from 8.3 to 8.5 to match the app dependency baseline. |
 | 2026-05-15 JST | `composer run-script compile` failed in `prod-html-app` with `Doctrine\Common\Annotations\Reader` not found | 1 | Added `doctrine/annotations` explicitly for the existing `ray/web-form-module` annotation-based form interceptor. |
 | 2026-05-15 JST | `composer audit --no-dev` exits non-zero due to abandoned `doctrine/annotations` | 1 | Resolved by using `bearsunday/rector-bearsunday` as the migration gate, replacing `@FormValidation()` with app-local attributes/interceptors, and removing `doctrine/annotations`. |
+| 2026-05-15 JST | `FakeQueryModule` override initially competed with existing MediaQuery `#[DbQuery]` pointcuts by priority | 1 | Fixed upstream by replacing the `DbQueryInterceptor` binding with `FakeQueryInterceptor`; BEAR.AppKata now uses direct `FakeQueryModule` override. |
+| 2026-05-15 JST | Ray.FakeQuery factory misconfiguration could silently fall back to default hydration | 1 | Added `InvalidFactoryException` and tests for missing factory class/method; static vs injected factories are now selected with reflection. |
 
 ## 5-Question Reboot Check
 | Question | Answer |
 |----------|--------|
-| Where am I? | Final gate complete. |
-| Where am I going? | Ready for review/commit/PR; follow-up read slices can reuse the Admin pattern. |
+| Where am I? | Phase 5+ modernization is complete, Ray.FakeQuery PR #2 is release-baseline ready, and BEAR.AppKata PR #2 is green against that branch. |
+| Where am I going? | Next step is Ray.FakeQuery 1.0 release, then replace BEAR.AppKata's branch alias/VCS repository with a stable `ray/fake-query:^1.0` dependency. |
 | What's the goal? | Modernize BEAR.AppKata read/API contracts while preserving DDD write workflows. |
 | What have I learned? | See `findings.md`. |
-| What have I done? | Created issue #1 and local planning files. |
+| What have I done? | Completed the Admin read modernization slice, upstreamed/hardened Ray.FakeQuery support, opened the DML metadata follow-up, and verified local/GitHub gates. |

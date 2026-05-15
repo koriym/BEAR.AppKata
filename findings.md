@@ -40,6 +40,9 @@
 - Fake JSON should be treated as executable domain vocabulary, not just mock data. A small canonical Admin read fixture can make the kata's terms visible: primary email, verified/unverified emails, allow/deny permissions, active status, and missing-id behavior.
 - The current fake classes are still useful as typed adapters. The next step is not replacing them with raw JSON assertions, but loading canonical JSON fixtures and hydrating Entity/QueryResult objects from them.
 - `ray-di/Ray.FakeQuery` already provides the intended adapter: it replaces Ray.MediaQuery SQL execution with JSON fixtures and hydrates the same query interfaces. It should be the preferred implementation path before writing app-local fake JSON infrastructure.
+- Ray.FakeQuery should replace the `Ray\MediaQuery\DbQueryInterceptor` binding in override contexts, not try to outrank MediaQuery pointcuts with interceptor priority.
+- Ray.FakeQuery is viable as a 1.0 select-fixture release baseline: row, nullable row, JSONL row list, factory hydration, typed rowlist wrappers, and MediaQuery override replacement are covered by tests and CI.
+- `AffectedRows` and `InsertedRow` fake support is mechanically feasible from explicit fixture data, but should be tracked as DML metadata result support rather than fake PDO or mutable fake database behavior.
 
 ## Technical Decisions
 | Decision | Rationale |
@@ -60,6 +63,7 @@
 | Use a Psalm baseline for legacy/project-wide static-analysis drift | The modernization introduces Psalm 6, but existing code has broad informational/static issues outside this migration scope; new gates still run via `composer sa`. |
 | Add an app-local `Types.php` catalog only for duplicated boundary shapes | The Ray.Di/Ray.Aop pattern is valuable here, but only when an array shape crosses files/layers; Domain objects, Entities, QueryResults, and one-off resource bodies should remain explicit. |
 | Treat fake JSON as executable domain vocabulary | JSON fixtures can make canonical examples readable outside PHP constructors; prefer `ray/fake-query` so the fixture vocabulary remains connected to Ray.MediaQuery query IDs and hydrated Entity/QueryResult contracts. |
+| Release Ray.FakeQuery as select-focused 1.0 | The public API is small enough to stabilize now; `AffectedRows` / `InsertedRow` fixture support can be added in a later minor release without delaying the core JSON/JSONL adapter. |
 
 ## Issues Encountered
 | Issue | Resolution |
@@ -74,6 +78,8 @@
 | Ray.Di treated `ProviderInterface` in Aura router construction as provider-set injection after dependency upgrades | Added `CompatibleAuraRouter` with a concrete nullable header-provider dependency and rebound `primary_router`. |
 | PHPStan needed more than the default CLI memory limit | Added `--memory-limit=1G` in the `sa` script. |
 | Composer audit initially reported `doctrine/annotations` as abandoned | After aligning the app to the PHP 8.5 baseline and updating dependencies, `doctrine/annotations` was removed and `composer audit --no-dev` passes. |
+| FakeQuery override initially leaked to real SQL in an app that already installed MediaQueryModule | Fixed in Ray.FakeQuery by binding `DbQueryInterceptor` to `FakeQueryInterceptor`, so existing pointcuts resolve to the fake interceptor. |
+| Factory misconfiguration in Ray.FakeQuery was too forgiving | Added explicit `InvalidFactoryException`; missing/non-public factories no longer silently fall back to default hydration. |
 
 ## Resources
 - GitHub issue: https://github.com/koriym/BEAR.AppKata/issues/1
@@ -82,6 +88,8 @@
 - MyVendor.Cms BDR sample docs: `/Users/akihito/git/MyVendor.Cms/docs/media-query-samples.md`
 - MyVendor.Cms BDR tests: `/Users/akihito/git/MyVendor.Cms/tests/Smoke/MediaQuerySamplesTest.php`
 - Planned BEAR.AppKata reference-test ledger: `docs/reference-test-results.md`
+- Ray.FakeQuery PR: https://github.com/ray-di/Ray.FakeQuery/pull/2
+- Ray.FakeQuery DML metadata follow-up: https://github.com/ray-di/Ray.FakeQuery/issues/3
 - Admin queries: `source/app/ddd/core/src/Infrastructure/Query`
 - App resources: `source/app/src/Resource/App`
 - Response schemas: `source/app/var/schema/response`

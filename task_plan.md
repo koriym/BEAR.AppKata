@@ -84,6 +84,7 @@ Phase 5 verified
 - Validate fixture shape with schema or a focused fixture-loader test so the JSON stays executable documentation.
 - Avoid large DB-dump style fixtures; each JSON file should be a readable canonical example.
 - If `ray/fake-query` lacks support for a needed Ray.MediaQuery result feature such as `AffectedRows`, `PagesInterface`, or typed rowlist wrappers, record the gap and either contribute upstream or add a narrow local adapter.
+- Track `AffectedRows` / `InsertedRow` support as fixture-driven metadata results in Ray.FakeQuery, not as fake PDO or mutable fake database behavior.
 
 ### Target 6A: Smoke Test Layers
 - Add SQL smoke tests for placeholder coverage and basic prepare/execute.
@@ -225,9 +226,10 @@ Phase 5 verified
 - [x] Add a fixture-loader/schema test that verifies JSON shape, dates, enum values, and expected invariant examples.
 - [x] Reuse the same fixtures from resource and hypermedia tests so the test suite speaks one shared Admin vocabulary.
 - [x] Verify typed rowlist/result class support with the AdminSelection BDR sample through `ray/fake-query`.
-- [ ] Verify or design explicit metadata fixture support for `AffectedRows` / `InsertedRow` if a select-only fake is no longer enough.
+- [x] Verify the current `ray/fake-query` scope is intentionally select-fixture only for 1.0.
+- [x] Open an upstream follow-up for explicit fixture-driven `AffectedRows` / `InsertedRow` metadata support.
 - [ ] Extend the pattern to User/account read side only after the Admin fixture vocabulary is stable.
-- **Status:** Admin slice complete. It was first verified through a local path-repository symlink to `ray-di/Ray.FakeQuery` PR #2, then changed to a GitHub VCS repository so BEAR.AppKata CI can install the same branch. A Ray.FakeQuery interceptor precedence regression was found and fixed upstream, so `AdminReadFakeModule` now directly installs `FakeQueryModule` instead of using an app-local nested injector workaround. Replace the branch alias/VCS repository with a stable `ray/fake-query` constraint after the upstream release.
+- **Status:** Admin slice complete. It was first verified through a local path-repository symlink to `ray-di/Ray.FakeQuery` PR #2, then changed to a GitHub VCS repository so BEAR.AppKata CI can install the same branch. A Ray.FakeQuery interceptor replacement regression was found and fixed upstream, so `AdminReadFakeModule` now directly installs `FakeQueryModule` instead of using an app-local nested injector workaround. Ray.FakeQuery PR #2 is now a viable 1.0 baseline with select fixtures, JSONL collections, factory hydration, typed rowlist wrappers, and override replacement coverage. `AffectedRows` / `InsertedRow` fixture metadata is tracked separately for a later release in ray-di/Ray.FakeQuery#3. Replace the branch alias/VCS repository with a stable `ray/fake-query:^1.0` constraint after the upstream release.
 
 ### Phase 12: Final Quality Gate
 - [x] Run `composer cs`.
@@ -258,6 +260,7 @@ Phase 5 verified
 | Promote Ray.MediaQuery 1.1-style BDR samples to the roadmap | AffectedRows and rowlist/result classes are part of the reference surface the user wants to teach and verify. |
 | Treat `#[Alps]` as a dependency gate | Current `bear/api-doc 1.3.1` lacks the attribute class. |
 | Add hypermedia tests to the roadmap | They prove rel choreography and prevent Resource contracts from becoming disconnected examples. |
+| Keep Ray.FakeQuery 1.0 select-focused | The API is small and stable enough for 1.0; DML metadata fixture support is useful but should not expand the release baseline or imply fake DB behavior. |
 | Add ApiDoc/OpenAPI CI after schema/ALPS stabilization | Docs generation should validate the contract once the semantic/source schemas are meaningful. |
 | Add cache showcase after read contracts | Cache behavior needs stable Resource contracts and meaningful links/embeds to demonstrate dependency invalidation. |
 | Add smoke tests as shallow guardrails | SQL and MediaQuery callability catches drift without duplicating resource/domain assertions. |
