@@ -4,7 +4,7 @@
 Modernize BEAR.AppKata as a BEAR.Sunday reference kata by keeping DDD write workflows intact and adding BEAR-native read-side contracts with Resource, MediaQuery, HAL, JsonSchema, and focused tests.
 
 ## Current Phase
-CI remediation after PR #2
+Phase 5 verified
 
 ## Non-Goals
 - Do not replace DDD/Application/Domain with BDR.
@@ -143,11 +143,11 @@ CI remediation after PR #2
 - **Status:** not needed in this slice; Admin index/profile links and BDR rowlist sample cover the read-side collection reference without adding a workflow-owned collection endpoint.
 
 ### Phase 5: Hypermedia and Embed Contracts
-- [ ] Add links between Admin profile and Admin collection.
-- [ ] Add story-oriented hypermedia workflow tests.
-- [ ] Add HAL envelope contract test.
-- [ ] Introduce `#[Embed]` only for a real taxonomy relation and preserve embed slots with `$this->body += [...]`.
-- **Status:** complete
+- [x] Add links between Admin profile and Admin collection.
+- [x] Add story-oriented hypermedia workflow tests.
+- [x] Add HAL envelope contract test.
+- [x] Introduce `#[Embed]` only for a real taxonomy relation and preserve embed slots with `$this->body += [...]`.
+- **Status:** complete; HAL envelope tests now assert rendered `_links` JSON directly.
 
 ### Phase 6: ALPS and ApiDoc/OpenAPI
 - [ ] Upgrade `bear/api-doc` and add `#[Alps]` descriptors.

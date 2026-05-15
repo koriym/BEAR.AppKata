@@ -30,6 +30,7 @@
   - Restored `doctrine/annotations` as an explicit compatibility dependency for `ray/web-form-module` compile-time bindings.
   - Deferred `doctrine/annotations` removal; when it is prioritized, use `bearsunday/rector-bearsunday`.
   - Re-ran CI-equivalent local gates for tests, compile, coverage, and ApiDoc after the CI remediation.
+  - Revisited the requested scope "through Phase 5" and strengthened the HAL envelope contract test to assert rendered `_links` JSON instead of only checking `#[Link]` attributes.
 - Files created/modified:
   - `task_plan.md`
   - `findings.md`
@@ -53,6 +54,7 @@
 | BEAR.AppKata coverage script | `zsh -ic 'sphp85; composer run-script pcov'` | Pass | 52 tests, 111 assertions, OK; coverage generated | pass |
 | BEAR.AppKata ApiDoc CI script | `zsh -ic 'sphp85; composer doc'` | Pass | Generated `docs/index.html`, `openapi.json`, `llms.txt` | pass |
 | BEAR.AppKata production audit | `zsh -ic 'sphp85; composer audit --no-dev'` | No security advisories | No security vulnerability advisories found; exits non-zero because `doctrine/annotations` is abandoned | deferred |
+| BEAR.AppKata Phase 5 hypermedia contracts | `zsh -ic 'sphp85; vendor/bin/phpunit tests/Hypermedia tests/Resource/App/Admin'` | Pass | 7 tests, 42 assertions, OK | pass |
 
 ## Error Log
 | Timestamp | Error | Attempt | Resolution |
