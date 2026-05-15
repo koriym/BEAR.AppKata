@@ -119,27 +119,27 @@ Phase 5 verified
 - **Status:** complete
 
 ### Phase 2: Dependency and Convention Baseline
-- [ ] Update `bear/api-doc` enough to support `#[Alps]`, or defer `#[Alps]` in code and document why.
-- [ ] Upgrade Ray.MediaQuery enough to support BDR rowlist/result class and `AffectedRows` samples, or record why it cannot be done in this slice.
-- [ ] Add architecture/conventions documentation for read models, links, schema, and Page/App split.
-- [ ] Document BDR result class placement, affected-row samples, hypermedia story-test rules, smoke-test layers, cache showcase rules, and async runtime constraints.
-- [ ] Add `docs/reference-test-results.md` and record MyVendor.Cms reference-test results for the features being adapted.
-- [ ] Run `zsh -ic 'sphp85; composer test'` after dependency changes.
+- [x] Update `bear/api-doc` enough to support `#[Alps]`, or defer `#[Alps]` in code and document why.
+- [x] Upgrade Ray.MediaQuery enough to support BDR rowlist/result class and `AffectedRows` samples, or record why it cannot be done in this slice.
+- [x] Add architecture/conventions documentation for read models, links, schema, and Page/App split.
+- [x] Document BDR result class placement, affected-row samples, hypermedia story-test rules, smoke-test layers, cache showcase rules, and async runtime constraints.
+- [x] Add `docs/reference-test-results.md` and record MyVendor.Cms reference-test results for the features being adapted.
+- [x] Run `zsh -ic 'sphp85; composer test'` after dependency changes.
 - **Status:** complete
 
 ### Phase 3: Admin Profile Read Contract
-- [ ] Add Admin profile read model/QueryResult.
-- [ ] Add App Admin profile resource.
-- [ ] Add Admin profile response JsonSchema.
-- [ ] Add pure read model unit tests.
-- [ ] Add resource contract tests for success and not-found.
-- [ ] Verify existing admin write UseCase tests still pass.
+- [x] Add Admin profile read model/QueryResult.
+- [x] Add App Admin profile resource.
+- [x] Add Admin profile response JsonSchema.
+- [x] Add pure read model unit tests.
+- [x] Add resource contract tests for success and not-found.
+- [x] Verify existing admin write UseCase tests still pass.
 - **Status:** complete
 
 ### Phase 4: Admin Collection Contract
-- [ ] Add list query only if it is needed for an admin collection resource.
-- [ ] Add paginated collection resource and schema.
-- [ ] Add fake pager tests if `#[Pager]` is used.
+- [x] Evaluate whether a dedicated admin collection resource needs a list query.
+- [x] Defer paginated collection resource and schema because this slice does not need that endpoint.
+- [x] Defer fake pager tests because `#[Pager]` is not used in this slice.
 - **Status:** not needed in this slice; Admin index/profile links and BDR rowlist sample cover the read-side collection reference without adding a workflow-owned collection endpoint.
 
 ### Phase 5: Hypermedia and Embed Contracts
@@ -150,37 +150,37 @@ Phase 5 verified
 - **Status:** complete; HAL envelope tests now assert rendered `_links` JSON directly.
 
 ### Phase 6: ALPS and ApiDoc/OpenAPI
-- [ ] Upgrade `bear/api-doc` and add `#[Alps]` descriptors.
-- [ ] Add or update `var/alps/profile.json`.
-- [ ] Update `apidoc.xml` to generate `html,openapi,llms`.
-- [ ] Add ApiDoc/OpenAPI CI.
+- [x] Upgrade `bear/api-doc` and add `#[Alps]` descriptors.
+- [x] Add or update `var/alps/profile.json`.
+- [x] Update `apidoc.xml` to generate `html,openapi,llms`.
+- [x] Add ApiDoc/OpenAPI CI.
 - **Status:** complete
 
 ### Phase 7: BDR MediaQuery Result Samples
-- [ ] Add rowlist/result class query interface and result object.
-- [ ] Add affected-row sample command interface.
-- [ ] Add sample SQL files if needed.
-- [ ] Add sample tests covering PagesInterface, result class, and AffectedRows.
-- [ ] Record MyVendor.Cms reference-test result alongside BEAR.AppKata test result.
+- [x] Add rowlist/result class query interface and result object.
+- [x] Add affected-row sample command interface.
+- [x] Add sample SQL files if needed.
+- [x] Add sample tests covering PagesInterface, result class, and AffectedRows.
+- [x] Record MyVendor.Cms reference-test result alongside BEAR.AppKata test result.
 - **Status:** complete
 
 ### Phase 8: Smoke Test Layers
-- [ ] Add SQL smoke tests and parameter fixtures.
-- [ ] Add MediaQuery smoke tests and query argument fixtures.
-- [ ] Add `smoke` testsuite to `phpunit.xml.dist`.
+- [x] Add SQL smoke tests and parameter fixtures.
+- [x] Add MediaQuery smoke tests and query argument fixtures.
+- [x] Add `smoke` testsuite to `phpunit.xml.dist`.
 - **Status:** complete
 
 ### Phase 9: Cache Showcase
-- [ ] Add cache-specific App Resource examples after read contracts are stable.
-- [ ] Add in-memory cache override module for tests.
-- [ ] Add ETag/invalidation/source-code invariant tests.
-- [ ] Record MyVendor.Cms cache reference-test result before adapting.
+- [x] Add cache-specific App Resource examples after read contracts are stable.
+- [x] Add in-memory cache override module for tests.
+- [x] Add ETag/invalidation/source-code invariant tests.
+- [x] Record MyVendor.Cms cache reference-test result before adapting.
 - **Status:** complete
 
 ### Phase 10: Async Embed Showcase
-- [ ] Spike BEAR.Resource upgrade required by `bear/async`.
-- [ ] Add `bear/async` and runtime-specific demo only after `#[Embed]` contracts are stable.
-- [ ] Keep async checks optional/manual unless ext-parallel or ext-swoole is available in CI.
+- [x] Spike BEAR.Resource upgrade required by `bear/async`.
+- [x] Add `bear/async` and runtime-specific demo only after `#[Embed]` contracts are stable.
+- [x] Keep async checks optional/manual unless ext-parallel or ext-swoole is available in CI.
 - **Status:** complete as opt-in runtime support: `bear/async` dependency, `bin/async.php`, and `composer async` are installed; ext-parallel/ZTS execution remains outside the default gate.
 
 ### Phase 11: Extend Pattern Beyond Admin
@@ -190,10 +190,10 @@ Phase 5 verified
 - **Status:** deferred; the requested autonomous slice keeps the first reference pattern on Admin and documents the next read slices.
 
 ### Phase 12: Final Quality Gate
-- [ ] Run `zsh -ic 'sphp85; composer cs'`.
-- [ ] Run `zsh -ic 'sphp85; composer sa'`.
-- [ ] Run `zsh -ic 'sphp85; composer test'`.
-- [ ] Update issue #1 with completion notes and any deliberate deferrals.
+- [x] Run `zsh -ic 'sphp85; composer cs'`.
+- [x] Run `zsh -ic 'sphp85; composer sa'`.
+- [x] Run `zsh -ic 'sphp85; composer test'`.
+- [x] Update issue #1 with completion notes and any deliberate deferrals.
 - **Status:** complete
 
 ## Completion Summary
