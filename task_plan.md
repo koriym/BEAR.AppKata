@@ -227,7 +227,7 @@ Phase 5 verified
 - [x] Verify typed rowlist/result class support with the AdminSelection BDR sample through `ray/fake-query`.
 - [ ] Verify or design explicit metadata fixture support for `AffectedRows` / `InsertedRow` if a select-only fake is no longer enough.
 - [ ] Extend the pattern to User/account read side only after the Admin fixture vocabulary is stable.
-- **Status:** Admin slice complete. It was first verified through a local path-repository symlink to `ray-di/Ray.FakeQuery` PR #2, then changed to a GitHub VCS repository so BEAR.AppKata CI can install the same branch. Replace the branch alias/VCS repository with a stable `ray/fake-query` constraint after the upstream release.
+- **Status:** Admin slice complete. It was first verified through a local path-repository symlink to `ray-di/Ray.FakeQuery` PR #2, then changed to a GitHub VCS repository so BEAR.AppKata CI can install the same branch. A Ray.FakeQuery interceptor precedence regression was found and fixed upstream, so `AdminReadFakeModule` now directly installs `FakeQueryModule` instead of using an app-local nested injector workaround. Replace the branch alias/VCS repository with a stable `ray/fake-query` constraint after the upstream release.
 
 ### Phase 12: Final Quality Gate
 - [x] Run `composer cs`.

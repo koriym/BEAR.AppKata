@@ -42,6 +42,7 @@
   - Switched the public Composer repository entry from local path to GitHub VCS so CI can install `dev-codex/fake-query-release-hardening`.
   - Replaced hard-coded Admin read fake data classes with `tests/fixtures/admin-read` JSON/JSONL files and a `FakeQueryModule`-backed `AdminReadFakeModule`.
   - Verified that the symlinked Ray.FakeQuery branch hydrates Admin entities through `#[DbQuery(factory: ...)]`, returns `null` for missing nullable row fixtures, and wraps the AdminSelection typed rowlist result.
+  - Found that a plain `FakeQueryModule` override could be shadowed by an existing `MediaQueryModule` `#[DbQuery]` interceptor; fixed Ray.FakeQuery so the fake interceptor wins in override contexts, then simplified BEAR.AppKata back to direct `FakeQueryModule` installation.
 - Files created/modified:
   - `task_plan.md`
   - `findings.md`
@@ -76,6 +77,7 @@
 | BEAR.AppKata Ray.FakeQuery coding standard | `composer cs` | Pass | 68 files checked, OK | pass |
 | BEAR.AppKata Ray.FakeQuery static analysis | `composer sa` | Pass | Psalm/PHPStan/PHPMD completed with exit code 0; vendor PHP 8.5 deprecation warnings only | pass |
 | BEAR.AppKata Ray.FakeQuery full test suite | `composer test` | Pass | 68 tests, 166 assertions, OK | pass |
+| BEAR.AppKata direct FakeQueryModule override regression | `vendor/bin/phpunit tests/Fake/FakeQueryAdminReadTest.php tests/Resource/App/Admin/ProfileTest.php tests/Hypermedia && composer cs && composer sa && composer test` | Pass | Targeted suite: 10 tests, 57 assertions; full suite: 68 tests, 166 assertions, OK | pass |
 
 ## Error Log
 | Timestamp | Error | Attempt | Resolution |
