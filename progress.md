@@ -35,6 +35,7 @@
   - Used `bearsunday/rector-bearsunday` as the conversion tool gate; the standard rules found no remaining supported annotations.
   - Replaced the remaining `@FormValidation()` usage with `#[FormValidation]` and an app-local Attribute-aware form module/interceptor.
   - Removed `doctrine/annotations` from Composer dependencies; `composer why doctrine/annotations` now reports it is not installed.
+  - Evaluated the `Ray\Di\Types` / `Ray\Aop\Types` pattern and added a proposed Domain Type Alias Catalog follow-up to `task_plan.md`.
 - Files created/modified:
   - `task_plan.md`
   - `findings.md`

@@ -96,6 +96,17 @@ Phase 5 verified
 - Consider EmailQueue and verification-code read projections only if they are exposed as App Resource contracts.
 - Keep command resources and batch workflows owned by Application/Domain services.
 
+### Target 7A: Domain Type Alias Catalog
+- Evaluate introducing app-local `Types.php` files, similar to `Ray\Di\Types` and `Ray\Aop\Types`, for repeated Psalm/PHPStan array shapes at architectural boundaries.
+- Prefer a small `AppCore\Types` for core DDD/CQRS shapes and, only if needed, `MyVendor\MyProject\Types` for Presentation/HAL/form shapes.
+- Good initial candidates:
+  - Admin read response fragments such as account, email, and permission row arrays.
+  - Mail template vars and SMTP option array shapes.
+  - Fieldset demo nested address arrays if they remain array-based rather than value-object based.
+  - Smoke-test SQL parameter maps if reused across smoke and fake contexts.
+- Do not use type aliases to replace real Domain objects, Entity classes, or QueryResult/read models.
+- Add aliases only when a shape appears in at least two files or crosses a layer boundary; keep one-off resource bodies local.
+
 ### Target 8: Cache Showcase
 - Use BEAR.QueryRepository cache as a reference pattern after read Resource contracts are stable.
 - Prefer `#[CacheableResponse]` on cache-specific App Resources over manual cache primitives.
@@ -189,6 +200,13 @@ Phase 5 verified
 - [ ] Keep write workflows under UseCase/Domain unless adding a deliberately simple CRUD reference.
 - **Status:** deferred; the requested autonomous slice keeps the first reference pattern on Admin and documents the next read slices.
 
+### Phase 11A: Domain Type Alias Catalog
+- [ ] Add `AppCore\Types` with Psalm/PHPStan aliases for repeated core boundary shapes.
+- [ ] Decide whether a separate `MyVendor\MyProject\Types` is justified for Presentation/HAL/form shapes.
+- [ ] Refactor only duplicated boundary PHPDoc to import aliases; leave one-off shapes local.
+- [ ] Add static-analysis verification that alias imports are understood by Psalm and PHPStan.
+- **Status:** proposed; useful as a follow-up cleanup after Admin/User read contracts stabilize.
+
 ### Phase 12: Final Quality Gate
 - [x] Run `zsh -ic 'sphp85; composer cs'`.
 - [x] Run `zsh -ic 'sphp85; composer sa'`.
@@ -223,6 +241,7 @@ Phase 5 verified
 | Add smoke tests as shallow guardrails | SQL and MediaQuery callability catches drift without duplicating resource/domain assertions. |
 | Keep `bear/async` as a late showcase | It currently requires `bear/resource ^1.32` plus ext-parallel/ZTS or Swoole runtime concerns. |
 | Record MyVendor.Cms reference-test results before adapting features | BEAR.AppKata should prove the upstream reference pattern is green before it ports the pattern. |
+| Add a small app-local type alias catalog as a follow-up | Ray.Di/Ray.Aop show the value for repeated internal shape vocabulary; BEAR.AppKata has similar repeated boundary shapes, but aliases should not replace real Domain objects or read models. |
 
 ## Errors Encountered
 | Error | Attempt | Resolution |

@@ -35,6 +35,8 @@
 - BEAR.AppKata already has BEAR.QueryRepository and Symfony cache dependencies installed transitively; `ProdModule` installs `CacheVersionModule`.
 - MyVendor.Cms has cache showcase resources using `#[CacheableResponse]`, in-memory cache test override, ETag checks, and source-code invariant tests.
 - MyVendor.Cms separates smoke tests into SQL smoke and MediaQuery smoke layers.
+- `Ray\Di\Types` and `Ray\Aop\Types` use final `Types` classes as Psalm type-alias catalogs for repeated framework vocabulary: dependency containers, binding names, interceptor lists, matcher configs, method bindings, reflection references, and similar boundary shapes.
+- BEAR.AppKata has comparable repeated application boundary shapes: Admin read response fragments, mail template/options arrays, fieldset nested address arrays, and smoke/fake SQL parameter maps.
 
 ## Technical Decisions
 | Decision | Rationale |
@@ -53,6 +55,7 @@
 | Install `bear/async` as opt-in support | `bear/resource ^1.32` now satisfies the package dependency, but ext-parallel/ZTS or another supported runtime should remain outside default CI/test gates. |
 | Keep cache parent embed as a response showcase | MyVendor.Cms cache reference tests failed on embed dependency assertions in the reference working tree, so BEAR.AppKata adapts the stable leaf invalidation path and records the parent limitation. |
 | Use a Psalm baseline for legacy/project-wide static-analysis drift | The modernization introduces Psalm 6, but existing code has broad informational/static issues outside this migration scope; new gates still run via `composer sa`. |
+| Add an app-local `Types.php` catalog only for duplicated boundary shapes | The Ray.Di/Ray.Aop pattern is valuable here, but only when an array shape crosses files/layers; Domain objects, Entities, QueryResults, and one-off resource bodies should remain explicit. |
 
 ## Issues Encountered
 | Issue | Resolution |
