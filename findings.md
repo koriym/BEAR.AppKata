@@ -37,12 +37,14 @@
 - MyVendor.Cms separates smoke tests into SQL smoke and MediaQuery smoke layers.
 - `Ray\Di\Types` and `Ray\Aop\Types` use final `Types` classes as Psalm type-alias catalogs for repeated framework vocabulary: dependency containers, binding names, interceptor lists, matcher configs, method bindings, reflection references, and similar boundary shapes.
 - BEAR.AppKata has comparable repeated application boundary shapes: Admin read response fragments, mail template/options arrays, fieldset nested address arrays, and smoke/fake SQL parameter maps.
+- Fake JSON should be treated as executable domain vocabulary, not just mock data. A small canonical Admin read fixture can make the kata's terms visible: primary email, verified/unverified emails, allow/deny permissions, active status, and missing-id behavior.
+- The current fake classes are still useful as typed adapters. The next step is not replacing them with raw JSON assertions, but loading canonical JSON fixtures and hydrating Entity/QueryResult objects from them.
 
 ## Technical Decisions
 | Decision | Rationale |
 |----------|-----------|
 | First code slice should be Admin profile read API | It demonstrates read projection, schema, HAL link, and QueryResult purity while avoiding write workflow churn. |
-| Use direct fake query implementations for the first resource tests | It keeps tests hermetic without introducing a large fake SQL router too early. |
+| Use direct fake query implementations for the first resource tests | It keeps tests hermetic without introducing a large fake SQL router too early; promote the data to canonical fake JSON once the examples are reused as shared vocabulary. |
 | Add `#[JsonSchema]` and `#[Link]` before `#[Alps]` if dependency update is not done first | These attributes are already available in the installed BEAR.Resource version. |
 | Upgrade Ray.MediaQuery for BDR result samples as a gated phase | The user explicitly wants affected rows and rowlist/result class features, and they require the newer Result API. |
 | Add collection/pagination after item/profile | `#[Pager]` and `PagesInterface` are most useful after an item contract is stable. |
@@ -56,6 +58,7 @@
 | Keep cache parent embed as a response showcase | MyVendor.Cms cache reference tests failed on embed dependency assertions in the reference working tree, so BEAR.AppKata adapts the stable leaf invalidation path and records the parent limitation. |
 | Use a Psalm baseline for legacy/project-wide static-analysis drift | The modernization introduces Psalm 6, but existing code has broad informational/static issues outside this migration scope; new gates still run via `composer sa`. |
 | Add an app-local `Types.php` catalog only for duplicated boundary shapes | The Ray.Di/Ray.Aop pattern is valuable here, but only when an array shape crosses files/layers; Domain objects, Entities, QueryResults, and one-off resource bodies should remain explicit. |
+| Treat fake JSON as executable domain vocabulary | JSON fixtures can make canonical examples readable outside PHP constructors, while fake classes keep type safety by hydrating them into Entity and QueryResult objects. |
 
 ## Issues Encountered
 | Issue | Resolution |

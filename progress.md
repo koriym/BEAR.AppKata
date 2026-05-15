@@ -36,6 +36,7 @@
   - Replaced the remaining `@FormValidation()` usage with `#[FormValidation]` and an app-local Attribute-aware form module/interceptor.
   - Removed `doctrine/annotations` from Composer dependencies; `composer why doctrine/annotations` now reports it is not installed.
   - Evaluated the `Ray\Di\Types` / `Ray\Aop\Types` pattern and added a proposed Domain Type Alias Catalog follow-up to `task_plan.md`.
+  - Reframed fake JSON as executable shared domain vocabulary and added a proposed Canonical Fake JSON Vocabulary follow-up to `task_plan.md`.
 - Files created/modified:
   - `task_plan.md`
   - `findings.md`
