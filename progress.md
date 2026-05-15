@@ -37,6 +37,7 @@
   - Removed `doctrine/annotations` from Composer dependencies; `composer why doctrine/annotations` now reports it is not installed.
   - Evaluated the `Ray\Di\Types` / `Ray\Aop\Types` pattern and added a proposed Domain Type Alias Catalog follow-up to `task_plan.md`.
   - Reframed fake JSON as executable shared domain vocabulary and added a proposed Canonical Fake JSON Vocabulary follow-up to `task_plan.md`.
+  - Confirmed `ray-di/Ray.FakeQuery` should be the preferred implementation path for canonical JSON fixtures before building app-local fake JSON infrastructure.
 - Files created/modified:
   - `task_plan.md`
   - `findings.md`

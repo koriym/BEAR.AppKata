@@ -76,12 +76,14 @@ Phase 5 verified
 
 ### Target 6C: Canonical Fake JSON Vocabulary
 - Treat fake JSON fixtures as shared domain vocabulary, not merely test mocks.
-- Add small canonical datasets under `tests/fixtures` when Admin/User/account examples need to be read by multiple fake query classes, resource tests, hypermedia tests, or documentation.
-- Keep fake classes as typed adapters/hydrators from JSON into Entity/QueryResult objects; do not let tests assert against raw JSON when a domain/result type exists.
+- Prefer `ray/fake-query` as the canonical JSON-fixture adapter for Ray.MediaQuery interfaces, instead of building an app-local fake JSON loader first.
+- Add small canonical datasets under `tests/fixtures` or `var/fake` when Admin/User/account examples need to be read by multiple fake query classes, resource tests, hypermedia tests, or documentation.
+- Keep fake classes only where they add domain-specific behavior not covered by `ray/fake-query`; do not let tests assert against raw JSON when a domain/result type exists.
 - Prefer fixture names that teach the domain language, for example `admin-read/default-admin.json`, `admin-read/emails.json`, and `admin-read/permissions.json`.
 - Include invariants in fixture design: primary email, verified/unverified email, allow/deny permission, active/inactive status, and missing-id paths.
 - Validate fixture shape with schema or a focused fixture-loader test so the JSON stays executable documentation.
 - Avoid large DB-dump style fixtures; each JSON file should be a readable canonical example.
+- If `ray/fake-query` lacks support for a needed Ray.MediaQuery result feature such as `AffectedRows`, `PagesInterface`, or typed rowlist wrappers, record the gap and either contribute upstream or add a narrow local adapter.
 
 ### Target 6A: Smoke Test Layers
 - Add SQL smoke tests for placeholder coverage and basic prepare/execute.
@@ -217,12 +219,14 @@ Phase 5 verified
 - **Status:** proposed; useful as a follow-up cleanup after Admin/User read contracts stabilize.
 
 ### Phase 11B: Canonical Fake JSON Vocabulary
-- [ ] Introduce `tests/fixtures/admin-read` JSON fixtures for the canonical Admin profile example.
-- [ ] Refactor `FakeAdminQuery`, `FakeAdminEmailQuery`, and `FakeAdminPermissionQuery` to hydrate from fixture JSON while preserving typed query-interface returns.
+- [ ] Add `ray/fake-query` as a dev dependency if its dependency constraints fit the current PHP/Ray.MediaQuery baseline.
+- [ ] Introduce canonical Admin profile JSON fixtures using the `ray/fake-query` query-id convention.
+- [ ] Replace or shrink `FakeAdminQuery`, `FakeAdminEmailQuery`, and `FakeAdminPermissionQuery` by installing `FakeQueryModule` in the hermetic test context.
 - [ ] Add a fixture-loader/schema test that verifies JSON shape, dates, enum values, and expected invariant examples.
 - [ ] Reuse the same fixtures from resource and hypermedia tests so the test suite speaks one shared Admin vocabulary.
+- [ ] Verify BDR sample coverage for `AffectedRows`, `PagesInterface`, and typed rowlist/result classes; open upstream issues or add narrow adapters for any missing `ray/fake-query` support.
 - [ ] Extend the pattern to User/account read side only after the Admin fixture vocabulary is stable.
-- **Status:** proposed; useful because fake JSON acts as executable domain vocabulary, not just a mock data source.
+- **Status:** proposed; `ray/fake-query` should be the default implementation path because fake JSON acts as executable domain vocabulary, not just a mock data source.
 
 ### Phase 12: Final Quality Gate
 - [x] Run `composer cs`.
@@ -259,7 +263,7 @@ Phase 5 verified
 | Keep `bear/async` as a late showcase | It currently requires `bear/resource ^1.32` plus ext-parallel/ZTS or Swoole runtime concerns. |
 | Record MyVendor.Cms reference-test results before adapting features | BEAR.AppKata should prove the upstream reference pattern is green before it ports the pattern. |
 | Add a small app-local type alias catalog as a follow-up | Ray.Di/Ray.Aop show the value for repeated internal shape vocabulary; BEAR.AppKata has similar repeated boundary shapes, but aliases should not replace real Domain objects or read models. |
-| Treat fake JSON as executable domain vocabulary | JSON fixtures can teach the canonical Admin/User examples across tests and docs; fake classes should remain typed hydrators so the code still exercises Entity and QueryResult contracts. |
+| Treat fake JSON as executable domain vocabulary | JSON fixtures can teach the canonical Admin/User examples across tests and docs; prefer `ray/fake-query` as the Ray.MediaQuery-compatible implementation so fake data still exercises Entity and QueryResult contracts. |
 
 ## Errors Encountered
 | Error | Attempt | Resolution |

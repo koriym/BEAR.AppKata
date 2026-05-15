@@ -39,6 +39,7 @@
 - BEAR.AppKata has comparable repeated application boundary shapes: Admin read response fragments, mail template/options arrays, fieldset nested address arrays, and smoke/fake SQL parameter maps.
 - Fake JSON should be treated as executable domain vocabulary, not just mock data. A small canonical Admin read fixture can make the kata's terms visible: primary email, verified/unverified emails, allow/deny permissions, active status, and missing-id behavior.
 - The current fake classes are still useful as typed adapters. The next step is not replacing them with raw JSON assertions, but loading canonical JSON fixtures and hydrating Entity/QueryResult objects from them.
+- `ray-di/Ray.FakeQuery` already provides the intended adapter: it replaces Ray.MediaQuery SQL execution with JSON fixtures and hydrates the same query interfaces. It should be the preferred implementation path before writing app-local fake JSON infrastructure.
 
 ## Technical Decisions
 | Decision | Rationale |
@@ -58,7 +59,7 @@
 | Keep cache parent embed as a response showcase | MyVendor.Cms cache reference tests failed on embed dependency assertions in the reference working tree, so BEAR.AppKata adapts the stable leaf invalidation path and records the parent limitation. |
 | Use a Psalm baseline for legacy/project-wide static-analysis drift | The modernization introduces Psalm 6, but existing code has broad informational/static issues outside this migration scope; new gates still run via `composer sa`. |
 | Add an app-local `Types.php` catalog only for duplicated boundary shapes | The Ray.Di/Ray.Aop pattern is valuable here, but only when an array shape crosses files/layers; Domain objects, Entities, QueryResults, and one-off resource bodies should remain explicit. |
-| Treat fake JSON as executable domain vocabulary | JSON fixtures can make canonical examples readable outside PHP constructors, while fake classes keep type safety by hydrating them into Entity and QueryResult objects. |
+| Treat fake JSON as executable domain vocabulary | JSON fixtures can make canonical examples readable outside PHP constructors; prefer `ray/fake-query` so the fixture vocabulary remains connected to Ray.MediaQuery query IDs and hydrated Entity/QueryResult contracts. |
 
 ## Issues Encountered
 | Issue | Resolution |
