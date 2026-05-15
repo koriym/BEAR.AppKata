@@ -6491,12 +6491,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ray-di/Ray.FakeQuery.git",
-                "reference": "ea50646f40786914619176324d9665cc7f258052"
+                "reference": "77d600202396518158ac87109f40d1c7d2cb279f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ray-di/Ray.FakeQuery/zipball/ea50646f40786914619176324d9665cc7f258052",
-                "reference": "ea50646f40786914619176324d9665cc7f258052",
+                "url": "https://api.github.com/repos/ray-di/Ray.FakeQuery/zipball/77d600202396518158ac87109f40d1c7d2cb279f",
+                "reference": "77d600202396518158ac87109f40d1c7d2cb279f",
                 "shasum": ""
             },
             "require": {
@@ -6616,7 +6616,7 @@
                 "issues": "https://github.com/ray-di/Ray.FakeQuery/issues",
                 "source": "https://github.com/ray-di/Ray.FakeQuery/tree/1.x"
             },
-            "time": "2026-05-15T03:15:07+00:00"
+            "time": "2026-05-15T03:26:36+00:00"
         },
         {
             "name": "rector/rector",
