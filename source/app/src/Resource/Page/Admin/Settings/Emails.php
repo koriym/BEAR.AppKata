@@ -58,6 +58,7 @@ class Emails extends BaseAdminPage
 
     #[FormValidation]
     #[AdminGuard]
+    #[RequiredPermission('settings', Permission::Read)]
     #[Transactional]
     public function onPost(
         #[Input]
