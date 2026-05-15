@@ -30,6 +30,7 @@
         "bear/devtools": "^1.0",
         "koriym/sql-quality": "^0.1.7",
         "phpunit/phpunit": "^10.0",
+        "ray/fake-query": "dev-codex/fake-query-release-hardening as 1.0.x-dev",
         "rector/rector": "^2.2",
         "roave/security-advisories": "dev-latest"
     },
@@ -136,5 +137,10 @@
             "bin-links": true,
             "forward-command": false
         }
-    }
+    },
+    "repositories": [{
+        "name": "ray-fake-query",
+        "type": "vcs",
+        "url": "https://github.com/ray-di/Ray.FakeQuery.git"
+    }]
 }

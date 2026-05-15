@@ -4,15 +4,19 @@ declare(strict_types=1);
 
 namespace MyVendor\MyProject\Hypermedia;
 
+use AppCore\Infrastructure\Query\AdminEmailQueryInterface;
+use AppCore\Infrastructure\Query\AdminPermissionQueryInterface;
+use AppCore\Infrastructure\Query\AdminQueryInterface;
 use BEAR\Resource\Annotation\Link;
 use BEAR\Resource\ResourceObject;
-use MyVendor\MyProject\Fake\FakeAdminEmailQuery;
-use MyVendor\MyProject\Fake\FakeAdminPermissionQuery;
-use MyVendor\MyProject\Fake\FakeAdminQuery;
+use MyVendor\MyProject\Fake\AdminReadFakeModule;
 use MyVendor\MyProject\Resource\App\Admin\Index;
 use MyVendor\MyProject\Resource\App\Admin\Profile;
 use PHPUnit\Framework\TestCase;
+use Ray\Di\Injector as DiInjector;
 use ReflectionMethod;
+
+use function dirname;
 
 abstract class AbstractWorkflowTestCase extends TestCase
 {
@@ -22,11 +26,7 @@ abstract class AbstractWorkflowTestCase extends TestCase
     protected function setUp(): void
     {
         $this->index = new Index();
-        $this->profile = new Profile(
-            new FakeAdminQuery(),
-            new FakeAdminEmailQuery(),
-            new FakeAdminPermissionQuery(),
-        );
+        $this->profile = $this->profileFromFixtures();
     }
 
     /** @param array<string, mixed> $vars */
@@ -55,5 +55,19 @@ abstract class AbstractWorkflowTestCase extends TestCase
         }
 
         self::fail($ro::class . " does not declare rel `{$rel}`");
+    }
+
+    private function profileFromFixtures(): Profile
+    {
+        $injector = new DiInjector(
+            new AdminReadFakeModule(),
+            dirname(__DIR__, 2) . '/var/tmp/fake-query-admin-read-hypermedia',
+        );
+
+        $admin = $injector->getInstance(AdminQueryInterface::class);
+        $emails = $injector->getInstance(AdminEmailQueryInterface::class);
+        $permissions = $injector->getInstance(AdminPermissionQueryInterface::class);
+
+        return new Profile($admin, $emails, $permissions);
     }
 }

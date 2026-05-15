@@ -38,6 +38,10 @@
   - Evaluated the `Ray\Di\Types` / `Ray\Aop\Types` pattern and added a proposed Domain Type Alias Catalog follow-up to `task_plan.md`.
   - Reframed fake JSON as executable shared domain vocabulary and added a proposed Canonical Fake JSON Vocabulary follow-up to `task_plan.md`.
   - Confirmed `ray-di/Ray.FakeQuery` should be the preferred implementation path for canonical JSON fixtures before building app-local fake JSON infrastructure.
+  - Added `ray/fake-query` as a dev dependency and first verified it through a Composer path repository symlink to `/Users/akihito/git/Ray.FakeQuery`.
+  - Switched the public Composer repository entry from local path to GitHub VCS so CI can install `dev-codex/fake-query-release-hardening`.
+  - Replaced hard-coded Admin read fake data classes with `tests/fixtures/admin-read` JSON/JSONL files and a `FakeQueryModule`-backed `AdminReadFakeModule`.
+  - Verified that the symlinked Ray.FakeQuery branch hydrates Admin entities through `#[DbQuery(factory: ...)]`, returns `null` for missing nullable row fixtures, and wraps the AdminSelection typed rowlist result.
 - Files created/modified:
   - `task_plan.md`
   - `findings.md`
@@ -68,6 +72,10 @@
 | BEAR.AppKata annotation conversion static analysis | `composer sa` | Pass | Psalm/PHPStan/PHPMD completed with exit code 0; vendor PHP 8.5 deprecation warnings only | pass |
 | BEAR.AppKata annotation conversion full test suite | `composer test` | Pass | 68 tests, 166 assertions, OK | pass |
 | BEAR.AppKata form validation attribute contract | `vendor/bin/phpunit tests/Resource/Page/FormValidationAttributeTest.php` | Pass | 15 tests, 30 assertions, OK | pass |
+| BEAR.AppKata Ray.FakeQuery Admin read slice | `vendor/bin/phpunit tests/Fake/FakeQueryAdminReadTest.php tests/Resource/App/Admin/ProfileTest.php tests/Hypermedia` | Pass | 10 tests, 57 assertions, OK | pass |
+| BEAR.AppKata Ray.FakeQuery coding standard | `composer cs` | Pass | 68 files checked, OK | pass |
+| BEAR.AppKata Ray.FakeQuery static analysis | `composer sa` | Pass | Psalm/PHPStan/PHPMD completed with exit code 0; vendor PHP 8.5 deprecation warnings only | pass |
+| BEAR.AppKata Ray.FakeQuery full test suite | `composer test` | Pass | 68 tests, 166 assertions, OK | pass |
 
 ## Error Log
 | Timestamp | Error | Attempt | Resolution |

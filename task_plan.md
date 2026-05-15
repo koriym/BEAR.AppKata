@@ -219,14 +219,15 @@ Phase 5 verified
 - **Status:** proposed; useful as a follow-up cleanup after Admin/User read contracts stabilize.
 
 ### Phase 11B: Canonical Fake JSON Vocabulary
-- [ ] Add `ray/fake-query` as a dev dependency if its dependency constraints fit the current PHP/Ray.MediaQuery baseline.
-- [ ] Introduce canonical Admin profile JSON fixtures using the `ray/fake-query` query-id convention.
-- [ ] Replace or shrink `FakeAdminQuery`, `FakeAdminEmailQuery`, and `FakeAdminPermissionQuery` by installing `FakeQueryModule` in the hermetic test context.
-- [ ] Add a fixture-loader/schema test that verifies JSON shape, dates, enum values, and expected invariant examples.
-- [ ] Reuse the same fixtures from resource and hypermedia tests so the test suite speaks one shared Admin vocabulary.
-- [ ] Verify BDR sample coverage for `AffectedRows`, `PagesInterface`, and typed rowlist/result classes; open upstream issues or add narrow adapters for any missing `ray/fake-query` support.
+- [x] Add `ray/fake-query` as a dev dependency if its dependency constraints fit the current PHP/Ray.MediaQuery baseline.
+- [x] Introduce canonical Admin profile JSON/JSONL fixtures using the `ray/fake-query` query-id convention.
+- [x] Replace `FakeAdminQuery`, `FakeAdminEmailQuery`, and `FakeAdminPermissionQuery` data classes with a `FakeQueryModule`-backed hermetic test context.
+- [x] Add a fixture-loader/schema test that verifies JSON shape, dates, enum values, and expected invariant examples.
+- [x] Reuse the same fixtures from resource and hypermedia tests so the test suite speaks one shared Admin vocabulary.
+- [x] Verify typed rowlist/result class support with the AdminSelection BDR sample through `ray/fake-query`.
+- [ ] Verify or design explicit metadata fixture support for `AffectedRows` / `InsertedRow` if a select-only fake is no longer enough.
 - [ ] Extend the pattern to User/account read side only after the Admin fixture vocabulary is stable.
-- **Status:** proposed; `ray/fake-query` should be the default implementation path because fake JSON acts as executable domain vocabulary, not just a mock data source.
+- **Status:** Admin slice complete. It was first verified through a local path-repository symlink to `ray-di/Ray.FakeQuery` PR #2, then changed to a GitHub VCS repository so BEAR.AppKata CI can install the same branch. Replace the branch alias/VCS repository with a stable `ray/fake-query` constraint after the upstream release.
 
 ### Phase 12: Final Quality Gate
 - [x] Run `composer cs`.
