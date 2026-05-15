@@ -13,6 +13,9 @@ use PHPUnit\Framework\TestCase;
 use ReflectionClass;
 
 use function file_get_contents;
+use function json_decode;
+
+use const JSON_THROW_ON_ERROR;
 
 final class AdminDashboardCacheTest extends TestCase
 {
@@ -21,8 +24,9 @@ final class AdminDashboardCacheTest extends TestCase
 
     protected function setUp(): void
     {
-        AdminSummary::reset();
         $injector = Injector::getOverrideInstance('hal-api-app', new CacheShowcaseModule());
+        $summaryStore = $injector->getInstance(AdminSummaryStore::class);
+        $summaryStore->reset();
         $this->resource = $injector->getInstance(ResourceInterface::class);
         $this->httpCache = $injector->getInstance(HttpCacheInterface::class);
     }
@@ -34,7 +38,10 @@ final class AdminDashboardCacheTest extends TestCase
         $this->assertSame(200, $ro->code);
         $this->assertArrayHasKey(Header::ETAG, $ro->headers);
         $this->assertArrayHasKey('summary', $ro->body);
-        $this->assertStringContainsString('"summary": {}', (string) $ro);
+        $payload = json_decode((string) $ro, true, 512, JSON_THROW_ON_ERROR);
+        $this->assertIsArray($payload);
+        $this->assertArrayHasKey('summary', $payload);
+        $this->assertSame([], $payload['summary']);
         $this->assertTrue($this->httpCache->isNotModified([
             Header::HTTP_IF_NONE_MATCH => $ro->headers[Header::ETAG],
         ]));

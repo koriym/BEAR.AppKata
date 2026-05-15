@@ -83,10 +83,10 @@
 
 ## Resources
 - GitHub issue: https://github.com/koriym/BEAR.AppKata/issues/1
-- Local repo: `/Users/akihito/git/bear-app`
-- Reference repo: `/Users/akihito/git/MyVendor.Cms`
-- MyVendor.Cms BDR sample docs: `/Users/akihito/git/MyVendor.Cms/docs/media-query-samples.md`
-- MyVendor.Cms BDR tests: `/Users/akihito/git/MyVendor.Cms/tests/Smoke/MediaQuerySamplesTest.php`
+- Local repo: `<repo-root>`
+- Reference repo: `<path-to-MyVendor.Cms>`
+- MyVendor.Cms BDR sample docs: `<path-to-MyVendor.Cms>/docs/media-query-samples.md`
+- MyVendor.Cms BDR tests: `<path-to-MyVendor.Cms>/tests/Smoke/MediaQuerySamplesTest.php`
 - Planned BEAR.AppKata reference-test ledger: `docs/reference-test-results.md`
 - Ray.FakeQuery PR: https://github.com/ray-di/Ray.FakeQuery/pull/2
 - Ray.FakeQuery DML metadata follow-up: https://github.com/ray-di/Ray.FakeQuery/issues/3

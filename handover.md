@@ -63,7 +63,7 @@ When Ray.FakeQuery is eventually tagged, remove the VCS repository override and 
 
 ## Verification Commands
 
-Run from `/Users/akihito/git/bear-app/source/app`:
+Run from `source/app` in this repository:
 
 ```bash
 composer cs
@@ -78,7 +78,7 @@ Targeted fake/Admin read verification:
 vendor/bin/phpunit tests/Fake/FakeQueryAdminReadTest.php tests/Resource/App/Admin/ProfileTest.php tests/Hypermedia
 ```
 
-Run from `/Users/akihito/git/Ray.FakeQuery`:
+Run from the Ray.FakeQuery repository root:
 
 ```bash
 composer tests

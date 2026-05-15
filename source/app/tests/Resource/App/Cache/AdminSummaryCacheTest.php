@@ -21,8 +21,9 @@ final class AdminSummaryCacheTest extends TestCase
 
     protected function setUp(): void
     {
-        AdminSummary::reset();
         $injector = Injector::getOverrideInstance('hal-api-app', new CacheShowcaseModule());
+        $summaryStore = $injector->getInstance(AdminSummaryStore::class);
+        $summaryStore->reset();
         $this->resource = $injector->getInstance(ResourceInterface::class);
         $this->httpCache = $injector->getInstance(HttpCacheInterface::class);
     }

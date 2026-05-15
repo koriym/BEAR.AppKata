@@ -10,6 +10,7 @@ use BEAR\Package\Provide\Router\AuraRouterModule;
 use BEAR\Resource\Module\JsonSchemaModule;
 use BEAR\Sunday\Extension\Router\RouterInterface;
 use Koriym\EnvJson\EnvJson;
+use MyVendor\MyProject\Resource\App\Cache\AdminSummaryStore;
 use MyVendor\MyProject\Router\CompatibleAuraRouter;
 use Ray\AuraSqlModule\AuraSqlModule;
 use Ray\Di\Scope;
@@ -58,6 +59,8 @@ class AppModule extends AbstractAppModule
         );
 
         $this->install(new IdentityValueModule());
+
+        $this->bind(AdminSummaryStore::class)->in(Scope::SINGLETON);
 
         $this->install(
             new JsonSchemaModule(
