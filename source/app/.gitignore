@@ -4,6 +4,8 @@
 /.idea/
 /vendor/
 /build/
+coverage.xml
+/var/di/
 /var/log/*
 !var/log/.gitkeep
 /var/tmp/*
