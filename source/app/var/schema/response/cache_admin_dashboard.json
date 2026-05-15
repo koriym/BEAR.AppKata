@@ -6,7 +6,7 @@
   "properties": {
     "summary": {"type": "object"},
     "id": {"type": "integer"},
-    "dependencyUri": {"type": "string"},
+    "dependencyUri": {"type": "string", "format": "uri"},
     "cachePattern": {"type": "string"}
   },
   "additionalProperties": false

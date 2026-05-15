@@ -12,7 +12,6 @@ use Ray\WebFormModule\Annotation\AbstractValidation;
 use Ray\WebFormModule\Exception\InvalidOnFailureMethod;
 use Ray\WebFormModule\FailureHandlerInterface;
 
-use function call_user_func_array;
 use function method_exists;
 
 final class FormFailureHandler implements FailureHandlerInterface
@@ -23,8 +22,6 @@ final class FormFailureHandler implements FailureHandlerInterface
     #[Override]
     public function handle(AbstractValidation $formValidation, MethodInvocation $invocation, AbstractForm $form): mixed
     {
-        unset($form);
-
         $object = $invocation->getThis();
         if (! $formValidation instanceof FormValidation) {
             throw new InvalidOnFailureMethod($object::class);
@@ -35,6 +32,6 @@ final class FormFailureHandler implements FailureHandlerInterface
             throw new InvalidOnFailureMethod($object::class);
         }
 
-        return call_user_func_array([$object, $onFailureMethod], (array) $invocation->getArguments());
+        return $object->{$onFailureMethod}(...$invocation->getArguments());
     }
 }

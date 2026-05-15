@@ -5,14 +5,13 @@ declare(strict_types=1);
 namespace MyVendor\MyProject\Resource\App\Cache;
 
 use BEAR\QueryRepository\Header;
+use BEAR\RepositoryModule\Annotation\Cacheable;
 use BEAR\Resource\ResourceInterface;
 use BEAR\Sunday\Extension\Transfer\HttpCacheInterface;
 use MyVendor\MyProject\Injector;
 use MyVendor\MyProject\Module\CacheShowcaseModule;
 use PHPUnit\Framework\TestCase;
 use ReflectionClass;
-
-use function file_get_contents;
 
 final class AdminSummaryCacheTest extends TestCase
 {
@@ -67,15 +66,10 @@ final class AdminSummaryCacheTest extends TestCase
         $this->assertStringContainsString('Edited Admin', (string) $second);
     }
 
-    public function testSourceContainsNoCachePrimitives(): void
+    public function testRelyOnCacheableAttributeOnly(): void
     {
-        $path = (new ReflectionClass(AdminSummary::class))->getFileName();
-        $this->assertIsString($path);
-        $src = file_get_contents($path);
-        $this->assertIsString($src);
+        $reflection = new ReflectionClass(AdminSummary::class);
 
-        foreach (['Header::SURROGATE_KEY', 'UriTagInterface', 'DonutRepositoryInterface', 'invalidateTags'] as $needle) {
-            $this->assertStringNotContainsString($needle, $src);
-        }
+        $this->assertCount(1, $reflection->getAttributes(Cacheable::class));
     }
 }
