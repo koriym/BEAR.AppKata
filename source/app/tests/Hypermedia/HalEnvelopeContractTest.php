@@ -16,18 +16,10 @@ use const JSON_THROW_ON_ERROR;
 
 final class HalEnvelopeContractTest extends TestCase
 {
-    private ResourceInterface $resource;
-
-    protected function setUp(): void
-    {
-        $injector = Injector::getOverrideInstance('hal-api-app', new AdminReadFakeModule());
-        $this->resource = $injector->getInstance(ResourceInterface::class);
-    }
-
     /** @throws JsonException */
     public function testAdminIndexHalEnvelopeExposesProfileTransition(): void
     {
-        $payload = $this->decode((string) $this->resource->get('app://self/admin/index'));
+        $payload = $this->decode((string) $this->resource()->get('app://self/admin/index'));
 
         $this->assertSame('Admin', $payload['HELLO']);
         $this->assertHalLink($payload, 'self', '/admin/index');
@@ -38,7 +30,7 @@ final class HalEnvelopeContractTest extends TestCase
     /** @throws JsonException */
     public function testAdminProfileHalEnvelopeExposesBackTransition(): void
     {
-        $payload = $this->decode((string) $this->resource->get('app://self/admin/profile', ['id' => 1]));
+        $payload = $this->decode((string) $this->resource()->get('app://self/admin/profile', ['id' => 1]));
 
         $this->assertSame(1, $payload['id']);
         $this->assertSame('primary@example.com', $payload['primaryEmail']);
@@ -68,5 +60,12 @@ final class HalEnvelopeContractTest extends TestCase
         $this->assertArrayHasKey($rel, $payload['_links']);
         $this->assertIsArray($payload['_links'][$rel]);
         $this->assertSame($href, $payload['_links'][$rel]['href']);
+    }
+
+    private function resource(): ResourceInterface
+    {
+        $injector = Injector::getOverrideInstance('hal-api-app', new AdminReadFakeModule());
+
+        return $injector->getInstance(ResourceInterface::class);
     }
 }
