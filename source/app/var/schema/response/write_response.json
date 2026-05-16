@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "WriteResponse",
+  "description": "Permissive write response shape. Cacheable writes may refresh the same resource and return its read body after invalidation.",
+  "type": "object",
+  "properties": {
+    "id": {"type": "integer"},
+    "message": {"type": "string"},
+    "displayName": {"type": "string"},
+    "revision": {"type": "integer"}
+  }
+}

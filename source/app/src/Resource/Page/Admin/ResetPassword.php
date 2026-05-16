@@ -61,10 +61,8 @@ class ResetPassword extends BaseAdminPage
         return $this;
     }
 
-    /**
-     * @FormValidation()
-     * @SuppressWarnings("PHPMD.LongVariable")
-     */
+    /** @SuppressWarnings("PHPMD.LongVariable") */
+    #[FormValidation]
     #[Transactional]
     public function onPost(
         #[Input]

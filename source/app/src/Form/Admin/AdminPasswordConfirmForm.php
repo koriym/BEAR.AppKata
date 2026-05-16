@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace MyVendor\MyProject\Form\Admin;
 
+use MyVendor\MyProject\Form\AntiCsrfSetter;
 use MyVendor\MyProject\Form\ExtendedForm;
-use Ray\WebFormModule\SetAntiCsrfTrait;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 class AdminPasswordConfirmForm extends ExtendedForm
 {
-    use SetAntiCsrfTrait;
+    use AntiCsrfSetter;
 
     public function init(): void
     {

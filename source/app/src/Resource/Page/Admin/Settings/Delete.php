@@ -40,10 +40,8 @@ class Delete extends BaseAdminPage
         return $this;
     }
 
-    /**
-     * @FormValidation()
-     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
-     */
+    /** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
+    #[FormValidation]
     #[AdminGuard]
     #[Transactional]
     #[AdminLogout]

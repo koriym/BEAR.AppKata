@@ -6,6 +6,7 @@
     xsi:schemaLocation="https://getpsalm.org/schema/config vendor-bin/tools/vendor/vimeo/psalm/config.xsd"
     findUnusedBaselineEntry="false"
     findUnusedCode="false"
+    errorBaseline="psalm-baseline.xml"
 >
     <projectFiles>
         <directory name="src"/>
@@ -19,11 +20,6 @@
     </projectFiles>
     <!-- suppress -->
     <issueHandlers>
-        <MissingConstructor>
-            <errorLevel type="suppress">
-                <directory name="src/Resource"/>
-            </errorLevel>
-        </MissingConstructor>
         <NonInvariantDocblockPropertyType>
             <errorLevel type="suppress">
                 <directory name="src/Resource"/>
@@ -35,5 +31,4 @@
             </errorLevel>
         </PropertyNotSetInConstructor>
     </issueHandlers>
-    <plugins><pluginClass class="Psalm\PhpUnitPlugin\Plugin"/></plugins>
 </psalm>

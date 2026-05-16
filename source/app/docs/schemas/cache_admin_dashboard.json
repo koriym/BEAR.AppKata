@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "CacheAdminDashboard",
+  "type": "object",
+  "required": ["summary", "id", "dependencyUri", "cachePattern"],
+  "properties": {
+    "summary": {"type": "object"},
+    "id": {"type": "integer"},
+    "dependencyUri": {"type": "string", "format": "uri"},
+    "cachePattern": {"type": "string"}
+  },
+  "additionalProperties": false
+}

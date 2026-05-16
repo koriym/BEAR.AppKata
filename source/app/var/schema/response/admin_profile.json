@@ -1,0 +1,96 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "AdminProfile",
+  "type": "object",
+  "required": [
+    "id",
+    "username",
+    "displayName",
+    "active",
+    "primaryEmail",
+    "verifiedEmailCount",
+    "emails",
+    "permissions",
+    "allowedResources",
+    "allowedPermissions"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "username": {
+      "type": "string"
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "primaryEmail": {
+      "type": ["string", "null"]
+    },
+    "verifiedEmailCount": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "emails": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "emailAddress", "verified"],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "emailAddress": {
+            "type": "string"
+          },
+          "verified": {
+            "type": "boolean"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "access", "resourceName", "permissionName"],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "access": {
+            "type": "string",
+            "enum": ["allow", "deny"]
+          },
+          "resourceName": {
+            "type": "string"
+          },
+          "permissionName": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "allowedResources": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "allowedPermissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -57,7 +57,7 @@ class CodeVerify extends BaseAdminPage
         return $this;
     }
 
-    /** @FormValidation() */
+    #[FormValidation]
     #[Transactional]
     public function onPost(
         #[Input]

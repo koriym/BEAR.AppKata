@@ -29,10 +29,8 @@ class UploadDemo extends BaseAdminPage
         return $this;
     }
 
-    /**
-     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
-     * @FormValidation()
-     */
+    /** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
+    #[FormValidation]
     #[AdminGuard]
     public function onPost(
         #[Input]

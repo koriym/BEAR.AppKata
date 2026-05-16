@@ -1,0 +1,2 @@
+{"id":1,"admin_id":1,"email_address":"backup@example.com","verified_date":null,"created_date":"2026-01-01 00:00:00","updated_date":"2026-01-01 00:00:00"}
+{"id":2,"admin_id":1,"email_address":"primary@example.com","verified_date":"2026-01-02 00:00:00","created_date":"2026-01-01 00:00:00","updated_date":"2026-01-02 00:00:00"}

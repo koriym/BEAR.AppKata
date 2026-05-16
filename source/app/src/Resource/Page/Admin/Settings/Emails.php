@@ -56,7 +56,7 @@ class Emails extends BaseAdminPage
         return $this;
     }
 
-    /** @FormValidation() */
+    #[FormValidation]
     #[AdminGuard]
     #[Transactional]
     public function onPost(

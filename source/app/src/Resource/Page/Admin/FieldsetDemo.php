@@ -33,10 +33,8 @@ class FieldsetDemo extends BaseAdminPage
         return $this;
     }
 
-    /**
-     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
-     * @FormValidation()
-     */
+    /** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
+    #[FormValidation]
     public function onPost(
         #[Input]
         FieldsetDemoInput $input,

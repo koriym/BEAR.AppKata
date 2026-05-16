@@ -29,10 +29,8 @@ class Login extends BaseAdminPage
         return $this;
     }
 
-    /**
-     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
-     * @FormValidation()
-     */
+    /** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
+    #[FormValidation]
     #[CloudflareTurnstile]
     #[AdminLogin]
     public function onPost(

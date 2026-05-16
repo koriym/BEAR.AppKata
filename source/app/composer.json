@@ -4,30 +4,33 @@
     "license": "proprietary",
     "description": "",
     "require": {
-        "php": "^8.3.0",
+        "php": "^8.5.0",
         "aura/auth": "^4.0",
+        "bear/async": "^0.3",
         "bear/aura-router-module": "^2.4",
         "bear/dotenv": "^1.0",
         "bear/package": "^1.14",
-        "bear/resource": "^1.17",
+        "bear/resource": "^1.32",
         "bear/sunday": "^1.6",
+        "guzzlehttp/guzzle": "^7.10",
         "koriym/env-json": "^1.0",
-        "koriym/file-upload": "^0.2.0",
+        "koriym/file-upload": "^1.0",
         "phpmailer/phpmailer": "^6.10",
         "qiq/qiq": "^3.0",
         "ray/aop": "^2.12",
         "ray/aura-session-module": "^1.2",
         "ray/di": "^2.14",
         "ray/identity-value-module": "^1.0",
-        "ray/media-query": "^0.17.1",
-        "ray/web-form-module": "^0.6.0"
+        "ray/media-query": "^1.1",
+        "ray/web-form-module": "dev-migrate-attribute#9f48a96b74c8b24936dc051f5cc1e56988628f42 as 0.7.0-dev"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.4",
-        "bear/api-doc": "^1.1",
+        "bear/api-doc": "^1.9",
         "bear/devtools": "^1.0",
         "koriym/sql-quality": "^0.1.7",
         "phpunit/phpunit": "^10.0",
+        "ray/fake-query": "dev-codex/fake-query-release-hardening#77d600202396518158ac87109f40d1c7d2cb279f as 1.0.x-dev",
         "rector/rector": "^2.2",
         "roave/security-advisories": "dev-latest"
     },
@@ -81,7 +84,7 @@
         ],
         "sa": [
             "./vendor/bin/psalm --show-info=true",
-            "./vendor/bin/phpstan analyse -c phpstan.neon",
+            "./vendor/bin/phpstan analyse -c phpstan.neon --memory-limit=1G",
             "./vendor/bin/phpmd src text ./phpmd.xml",
             "./vendor/bin/phpmd ddd/core/src text ./phpmd.xml"
         ],
@@ -100,6 +103,7 @@
         ],
         "serve": "COMPOSER_PROCESS_TIMEOUT=0 php -dzend_extension=xdebug.so -S 127.0.0.1:8080 -t public",
         "app": "php bin/app.php",
+        "async": "php bin/async.php",
         "page": "php bin/page.php"
     },
     "scripts-descriptions": {
@@ -117,6 +121,7 @@
         "clean": "Clear cache files",
         "serve": "Start built-in server",
         "app": "Request app resource",
+        "async": "Request app resource via the BEAR.Async linker; requires ext-parallel + ZTS PHP or a supported async runtime",
         "page": "Request page resource"
     },
     "config": {
@@ -132,5 +137,17 @@
             "bin-links": true,
             "forward-command": false
         }
-    }
+    },
+    "repositories": [
+        {
+            "name": "ray-fake-query",
+            "type": "vcs",
+            "url": "https://github.com/ray-di/Ray.FakeQuery.git"
+        },
+        {
+            "name": "ray-web-form-module-attribute",
+            "type": "vcs",
+            "url": "https://github.com/apple-x-co/Ray.WebFormModule.git"
+        }
+    ]
 }

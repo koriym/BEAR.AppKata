@@ -27,10 +27,8 @@ class Login extends BaseUserPage
         return $this;
     }
 
-    /**
-     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
-     * @FormValidation()
-     */
+    /** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
+    #[FormValidation]
     #[UserLogin]
     public function onPost(
         #[Input]

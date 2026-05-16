@@ -12,7 +12,6 @@ use MyVendor\MyProject\Form\Customer as CustomerForm;
 use MyVendor\MyProject\TemplateEngine\QiqCustomHelpers;
 use MyVendor\MyProject\TemplateEngine\QiqModule;
 use Qiq\Helpers;
-use Ray\AuraSessionModule\AuraSessionModule;
 use Ray\WebFormModule\AuraInputModule;
 use Ray\WebFormModule\FormInterface;
 
@@ -24,7 +23,7 @@ class HtmlModule extends AbstractAppModule
 {
     protected function configure(): void
     {
-        $this->install(new AuraSessionModule());
+        $this->install(new AuraInputModule());
         $this->bind(Helpers::class)->to(QiqCustomHelpers::class);
         $this->install(
             new QiqModule(
@@ -35,7 +34,6 @@ class HtmlModule extends AbstractAppModule
                 ],
             ),
         );
-        $this->install(new AuraInputModule());
         $this->install(new SessionAuthModule());
         $this->install(new CaptchaModule());
         $this->install(new ThrottlingModule());

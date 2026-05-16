@@ -1,0 +1,69 @@
+# MyVendor\MyProject
+
+BEAR.Sunday reference application API
+
+## Routes (6)
+
+| HTTP Route | Methods | Resource |
+|------------|---------|----------|
+| /index | GET | App/Index |
+| /admin/index | GET | App/Admin/Index |
+| /admin/profile | GET | App/Admin/Profile |
+| /cache/admin-dashboard | GET | App/Cache/AdminDashboard |
+| /cache/admin-summary | GET, PUT | App/Cache/AdminSummary |
+| /user/index | GET | App/User/Index |
+
+## ResourceObjects (6)
+
+### App/Index
+`/index`
+
+| Method | Parameters | Links |
+|--------|------------|-------|
+| GET | name | - |
+
+### App/Admin/Index
+`/admin/index`
+
+| Method | Parameters | Links |
+|--------|------------|-------|
+| GET | - | href(goAdminProfile) |
+
+### App/Admin/Profile
+`/admin/profile`
+
+| Method | Parameters | Links |
+|--------|------------|-------|
+| GET | id* | href(goAdminIndex) |
+
+### App/Cache/AdminDashboard
+`/cache/admin-dashboard`
+
+| Method | Parameters | Links |
+|--------|------------|-------|
+| GET | id | src(summary) |
+
+### App/Cache/AdminSummary
+`/cache/admin-summary`
+
+| Method | Parameters | Links |
+|--------|------------|-------|
+| GET | id | - |
+| PUT | id*, displayName* | - |
+
+### App/User/Index
+`/user/index`
+
+| Method | Parameters | Links |
+|--------|------------|-------|
+| GET | - | - |
+
+## Responses (5)
+
+| Response | Schema | Properties |
+|----------|--------|------------|
+| Admin_index | admin_index.json | HELLO, defaultAdminId |
+| Admin_profile | admin_profile.json | id, username, displayName, active, primaryEmail, verifiedEmailCount, emails, permissions, allowedResources, allowedPermissions |
+| Cache_admin_dashboard | cache_admin_dashboard.json | summary, id, dependencyUri, cachePattern |
+| Cache_admin_summary | cache_admin_summary.json | id, displayName, revision |
+| Write_response | write_response.json | id, message, displayName, revision |

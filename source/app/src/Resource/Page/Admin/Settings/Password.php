@@ -47,7 +47,7 @@ class Password extends BaseAdminPage
         return $this;
     }
 
-    /** @FormValidation() */
+    #[FormValidation]
     #[AdminGuard]
     #[AdminPasswordProtect]
     public function onPost(

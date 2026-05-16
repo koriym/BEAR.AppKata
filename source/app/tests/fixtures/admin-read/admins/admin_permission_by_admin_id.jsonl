@@ -1,0 +1,3 @@
+{"id":1,"admin_id":1,"access":"allow","resource_name":"admin","permission_name":"read","created_date":"2026-01-01 00:00:00"}
+{"id":2,"admin_id":1,"access":"allow","resource_name":"admin","permission_name":"write","created_date":"2026-01-01 00:00:00"}
+{"id":3,"admin_id":1,"access":"deny","resource_name":"admin","permission_name":"privilege","created_date":"2026-01-01 00:00:00"}

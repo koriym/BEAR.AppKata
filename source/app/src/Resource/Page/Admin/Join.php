@@ -36,7 +36,7 @@ class Join extends BaseAdminPage
         return $this;
     }
 
-    /** @FormValidation() */
+    #[FormValidation]
     #[CloudflareTurnstile]
     #[RateLimiter]
     public function onPost(

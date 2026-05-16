@@ -29,10 +29,8 @@ class PasswordConfirm extends BaseAdminPage
         return $this;
     }
 
-    /**
-     * @SuppressWarnings("PHPMD.UnusedFormalParameter")
-     * @FormValidation()
-     */
+    /** @SuppressWarnings("PHPMD.UnusedFormalParameter") */
+    #[FormValidation]
     #[AdminGuard]
     #[AdminVerifyPassword]
     public function onPost(

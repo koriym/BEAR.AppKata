@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="6.16.1@f1f5de594dc76faf8784e02d3dc4716c91c6f6ac">
+  <file src="ddd/core/src/Domain/AccessControl/AccessControl.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function addResource(string $resourceName): self]]></code>
+      <code><![CDATA[public function allow(string $resourceName, Permission $permission): self]]></code>
+      <code><![CDATA[public function deny(string $resourceName, Permission $permission): self]]></code>
+      <code><![CDATA[public function isAllowed(string $resourceName, Permission $permission): bool]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Domain/Admin/EmailUrlSignature.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function serialize(string $random): string]]></code>
+      <code><![CDATA[public static function deserialize(string $string): self]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Domain/Hasher/PasswordHasher.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function hash(string $text): string]]></code>
+      <code><![CDATA[public function hashType(): string]]></code>
+      <code><![CDATA[public function verify(string $password, string $hashedPassword): bool]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Domain/Language/Language.php">
+    <InvalidNullableReturnType>
+      <code><![CDATA[string]]></code>
+    </InvalidNullableReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get(string $key, array $params = []): string]]></code>
+    </MissingOverrideAttribute>
+    <NullableReturnStatement>
+      <code><![CDATA[$message]]></code>
+    </NullableReturnStatement>
+    <PossiblyNullArgument>
+      <code><![CDATA[$message]]></code>
+    </PossiblyNullArgument>
+    <PossiblyNullArrayOffset>
+      <code><![CDATA[$this->messages]]></code>
+    </PossiblyNullArrayOffset>
+  </file>
+  <file src="ddd/core/src/Domain/Mail/Address.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getEmail(): string]]></code>
+      <code><![CDATA[public function getName(): string|null]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Domain/Mail/EmailConfig.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getHostname(): string]]></code>
+      <code><![CDATA[public function getOptions(): array]]></code>
+      <code><![CDATA[public function getPassword(): string]]></code>
+      <code><![CDATA[public function getPort(): int]]></code>
+      <code><![CDATA[public function getUsername(): string]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Domain/Mail/PhpTemplateRenderer.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(string $path, array $vars = []): string]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Domain/Throttle/Throttle.php">
+    <PossiblyFalseArgument>
+      <code><![CDATA[DateInterval::createFromDateString($this->interval)]]></code>
+    </PossiblyFalseArgument>
+  </file>
+  <file src="ddd/core/src/Domain/UrlSignature/UrlSignature.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function serialize(string $random): string]]></code>
+      <code><![CDATA[public static function deserialize(string $string): self]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Persistence/AdminPermissionRepository.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function findByAdminId(int $adminId): array]]></code>
+      <code><![CDATA[public function store(AdminPermission $adminPermission): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Persistence/AdminRepository.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function findById(int $id): Admin]]></code>
+      <code><![CDATA[public function store(Admin $admin): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Persistence/AdminTokenRepository.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function findByToken(string $token): AdminToken|null]]></code>
+      <code><![CDATA[public function store(AdminToken $adminToken): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Persistence/ThrottleRepository.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function findByThrottleKey(string $throttleKey): Throttle|null]]></code>
+      <code><![CDATA[public function store(Throttle $throttle): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Persistence/UserRepository.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function delete(User $user): void]]></code>
+      <code><![CDATA[public function findByExpired(DateTimeImmutable $dateTime): array]]></code>
+      <code><![CDATA[public function findById(int $id): User]]></code>
+      <code><![CDATA[public function findByIds(array $ids): array]]></code>
+      <code><![CDATA[public function findByUsername(string $username): User]]></code>
+      <code><![CDATA[public function store(User $user): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Result/AdminProfile.php">
+    <RedundantFunctionCall>
+      <code><![CDATA[array_values]]></code>
+    </RedundantFunctionCall>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Result/AdminSelection.php">
+    <InvalidReturnStatement>
+      <code><![CDATA[new ArrayIterator($this->rows)]]></code>
+    </InvalidReturnStatement>
+    <InvalidReturnType>
+      <code><![CDATA[ArrayIterator<int, AdminEntity>]]></code>
+    </InvalidReturnType>
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function count(): int]]></code>
+      <code><![CDATA[public function getIterator(): ArrayIterator]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/AdminAuthenticator.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function continueLogin(]]></code>
+      <code><![CDATA[public function getAccessControl(): AccessControl]]></code>
+      <code><![CDATA[public function getAuthRedirect(): string]]></code>
+      <code><![CDATA[public function getDisplayName(): string|null]]></code>
+      <code><![CDATA[public function getIdentity(): AdminIdentity]]></code>
+      <code><![CDATA[public function getPasswordRedirect(): string]]></code>
+      <code><![CDATA[public function getRememberCookieName(): string]]></code>
+      <code><![CDATA[public function getUnauthRedirect(): string]]></code>
+      <code><![CDATA[public function getUserData(): array]]></code>
+      <code><![CDATA[public function getUserId(): int|null]]></code>
+      <code><![CDATA[public function getUserName(): string|null]]></code>
+      <code><![CDATA[public function isExpired(): bool]]></code>
+      <code><![CDATA[public function isValid(): bool]]></code>
+      <code><![CDATA[public function login(]]></code>
+      <code><![CDATA[public function logout(): void]]></code>
+      <code><![CDATA[public function rememberLogin(]]></code>
+      <code><![CDATA[public function verifyPassword(string $username, string $password): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/AdminLogger.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function log(string $message): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/CloudflareTurnstileVerificationHandler.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __invoke(): void]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyFalseArgument>
+      <code><![CDATA[$curl]]></code>
+      <code><![CDATA[$curl]]></code>
+      <code><![CDATA[$curl]]></code>
+    </PossiblyFalseArgument>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/CommandLogger.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function log(string $message): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/CompactEncrypter.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function decrypt(string $payload): string]]></code>
+      <code><![CDATA[public function encrypt(string $text): string]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/Encrypter.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function decrypt(string $payload): string]]></code>
+      <code><![CDATA[public function encrypt(string $text): string]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyFalseArgument>
+      <code><![CDATA[$ivLen]]></code>
+    </PossiblyFalseArgument>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/FlashMessenger.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get(FlashMessageType $type, string|null $alternative = null): string|null]]></code>
+      <code><![CDATA[public function set(FlashMessageType $type, string $text): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/Page.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function __toString(): string]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/QueueMail.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function send(Email $email): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/SecureRandom.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function alphabetNumeric(int $length): string]]></code>
+      <code><![CDATA[public function hash(string $data, string $algo = 'sha256'): string]]></code>
+      <code><![CDATA[public function hmac(string $data, string $algo = 'sha256'): string]]></code>
+      <code><![CDATA[public function lockToken(int $length = 16): string]]></code>
+      <code><![CDATA[public function randomBytes(int $length): string]]></code>
+      <code><![CDATA[public function randomNumbers(int $length): int]]></code>
+      <code><![CDATA[public function shortHash(string $data, string $algo = 'crc32'): string]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/Session.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get(string $key, string|null $alt = null): mixed]]></code>
+      <code><![CDATA[public function reset(string $key): void]]></code>
+      <code><![CDATA[public function set(string $key, string $val): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/SmtpMail.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function send(Email $email): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/ThrottlingHandler.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function clear(string $key): void]]></code>
+      <code><![CDATA[public function countUp(string $key, string $remoteIp, string $attemptInterval, int $maxAttempts): void]]></code>
+      <code><![CDATA[public function isExceeded(string $key): bool]]></code>
+    </MissingOverrideAttribute>
+    <PossiblyFalseArgument>
+      <code><![CDATA[DateInterval::createFromDateString($attemptInterval)]]></code>
+    </PossiblyFalseArgument>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/UrlSignatureEncrypter.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function decrypt(string $string, string $className = UrlSignature::class): UrlSignatureInterface]]></code>
+      <code><![CDATA[public function encrypt(UrlSignatureInterface $urlSignature): string]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/UserAuthenticator.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function getAuthRedirect(): string]]></code>
+      <code><![CDATA[public function getIdentity(): UserIdentity]]></code>
+      <code><![CDATA[public function getUnauthRedirect(): string]]></code>
+      <code><![CDATA[public function getUserData(): array]]></code>
+      <code><![CDATA[public function getUserName(): string|null]]></code>
+      <code><![CDATA[public function isExpired(): bool]]></code>
+      <code><![CDATA[public function isValid(): bool]]></code>
+      <code><![CDATA[public function login(]]></code>
+      <code><![CDATA[public function logout(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Infrastructure/Shared/UserLogger.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function log(string $message): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="ddd/core/src/Presentation/Shared/AdminContext.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function displayName(): string]]></code>
+      <code><![CDATA[public function flashMessage(): string|null]]></code>
+      <code><![CDATA[public function getSessionValue(string $key, string|null $alt = null): mixed]]></code>
+      <code><![CDATA[public function isAllowed(string $resourceName, string $permission): bool]]></code>
+      <code><![CDATA[public function resetSessionValue(string $key): void]]></code>
+      <code><![CDATA[public function setFlashMessage(string $message): void]]></code>
+      <code><![CDATA[public function setSessionValue(string $key, string $val): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminCodeVerifyForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminContactDemoForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminDeleteForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminEmailCreateForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminFieldsetDemoForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminForgotPasswordForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminJoinForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminLoginForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminMultipleDemoForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminPasswordConfirmForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminPasswordResetForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminPasswordUpdateForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminSignUpForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/AdminUploadDemoForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Admin/Fieldset/AddressFieldset.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/Customer/UserLoginForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function init(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Form/ExtendedForm.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function apply(array $data): bool]]></code>
+      <code><![CDATA[public function submit(): array]]></code>
+    </MissingOverrideAttribute>
+    <UndefinedMagicMethod>
+      <code><![CDATA[input]]></code>
+    </UndefinedMagicMethod>
+  </file>
+  <file src="src/Interceptor/AdminAuthGuardian.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function invoke(MethodInvocation $invocation): mixed]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Interceptor/AdminAuthentication.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function invoke(MethodInvocation $invocation): mixed]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Interceptor/AdminAuthorization.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function invoke(MethodInvocation $invocation): mixed]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Interceptor/AdminKeepAuthenticated.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function invoke(MethodInvocation $invocation): mixed]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Interceptor/AdminPasswordProtector.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function invoke(MethodInvocation $invocation): mixed]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Interceptor/CloudflareTurnstileVerification.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function invoke(MethodInvocation $invocation): mixed]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Interceptor/Throttling.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function invoke(MethodInvocation $invocation): mixed]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Interceptor/UserAuthGuardian.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function invoke(MethodInvocation $invocation): mixed]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Interceptor/UserAuthentication.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function invoke(MethodInvocation $invocation): mixed]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Module/AppModule.php">
+    <InternalClass>
+      <code><![CDATA[new MediaQueryModule(
+                Queries::fromDir($this->appMeta->appDir . '/ddd/core/src/Infrastructure/Query'),
+                [new DbQueryConfig($this->appMeta->appDir . '/var/sql')],
+            )]]></code>
+    </InternalClass>
+    <InternalMethod>
+      <code><![CDATA[new MediaQueryModule(
+                Queries::fromDir($this->appMeta->appDir . '/ddd/core/src/Infrastructure/Query'),
+                [new DbQueryConfig($this->appMeta->appDir . '/var/sql')],
+            )]]></code>
+    </InternalMethod>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Module/BaseModule.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Module/CaptchaModule.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Module/CommandModule.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Module/DefaultModule.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Module/HtmlModule.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Module/ProdModule.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Module/SessionAuthModule.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Module/ThrottlingModule.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Provider/AdminAuthenticatorProvider.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Provider/CommandSchemeCollectionProvider.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get(): SchemeCollection]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Provider/CookieProvider.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Provider/LanguageProvider.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Provider/PhpMailerProvider.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get(): PHPMailer]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Provider/SessionProvider.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Provider/UserAuthenticatorProvider.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function get()]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/Resource/App/Admin/Profile.php">
+    <ArgumentTypeCoercion>
+      <code><![CDATA[$this->permissions->list($id)]]></code>
+    </ArgumentTypeCoercion>
+  </file>
+  <file src="src/TemplateEngine/QiqErrorHandler.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function handle(Exception $e, Request $request) // phpcs:ignore SlevomatCodingStandard.Exceptions.ReferenceThrowableOnly.ReferencedGeneralException]]></code>
+      <code><![CDATA[public function transfer(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/TemplateEngine/QiqErrorPage.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function toString(): string]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/TemplateEngine/QiqErrorPageFactory.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function newInstance(Throwable $e, RouterMatch $request): ResourceObject]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/TemplateEngine/QiqModule.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/TemplateEngine/QiqProdModule.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function configure(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="src/TemplateEngine/QiqRenderer.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function render(ResourceObject $ro): string]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="tests/Fake/FakeAdminEmailQuery.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function list(int $adminId): array]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="tests/Fake/FakeAdminPermissionQuery.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function list(int $adminId): array]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="tests/Fake/FakeAdminQuery.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[public function item(int $id): AdminEntity|null]]></code>
+      <code><![CDATA[public function itemByEmailAddress(string $emailAddress): AdminEntity|null]]></code>
+      <code><![CDATA[public function itemByUsername(string $username): AdminEntity|null]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="tests/Hypermedia/AbstractWorkflowTestCase.php">
+    <InternalMethod>
+      <code><![CDATA[addToAssertionCount]]></code>
+    </InternalMethod>
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+  </file>
+  <file src="tests/Hypermedia/AdminReadsProfileTest.php">
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[AdminReadsProfileTest]]></code>
+      <code><![CDATA[AdminReadsProfileTest]]></code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="tests/Hypermedia/HalEnvelopeContractTest.php">
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[HalEnvelopeContractTest]]></code>
+      <code><![CDATA[HalEnvelopeContractTest]]></code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="tests/Resource/App/Admin/ProfileTest.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[$profile]]></code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="tests/Resource/App/Cache/AdminDashboardCacheTest.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[$httpCache]]></code>
+      <code><![CDATA[$resource]]></code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="tests/Resource/App/Cache/AdminSummaryCacheTest.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[$httpCache]]></code>
+      <code><![CDATA[$resource]]></code>
+    </PropertyNotSetInConstructor>
+  </file>
+  <file src="tests/Resource/Page/IndexTest.php">
+    <MissingOverrideAttribute>
+      <code><![CDATA[protected function setUp(): void]]></code>
+    </MissingOverrideAttribute>
+    <PropertyNotSetInConstructor>
+      <code><![CDATA[$resource]]></code>
+    </PropertyNotSetInConstructor>
+  </file>
+</files>

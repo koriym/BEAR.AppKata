@@ -36,10 +36,8 @@ class ForgotPassword extends BaseAdminPage
         return $this;
     }
 
-    /**
-     * @FormValidation()
-     * @SuppressWarnings("PHPMD.LongVariable")
-     */
+    /** @SuppressWarnings("PHPMD.LongVariable") */
+    #[FormValidation]
     #[CloudflareTurnstile]
     #[RateLimiter]
     #[Transactional]

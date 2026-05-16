@@ -1,0 +1,42 @@
+name: API Documentation
+
+on:
+  push:
+    paths:
+      - 'source/app/src/**'
+      - 'source/app/var/schema/**'
+      - 'source/app/var/alps/**'
+      - 'source/app/apidoc.xml'
+      - '.github/workflows/apidoc.yml'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  apidoc:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./source/app
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          coverage: none
+
+      - name: Install dependencies
+        run: composer install --no-interaction --no-progress --prefer-dist
+
+      - name: Generate API documentation
+        run: composer doc
+
+      - name: Upload documentation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: api-documentation
+          path: |
+            source/app/docs/index.html
+            source/app/docs/openapi.json
+            source/app/docs/llms.txt
+          retention-days: 30
