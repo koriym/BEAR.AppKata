@@ -13,15 +13,12 @@ readonly class FieldsetDemoInput
      * @param list<Address>|null $deliveries
      *
      * @psalm-suppress UndefinedAttributeClass
-     * @SuppressWarnings("PHPMD.CamelCaseParameterName")
      */
     public function __construct(
         #[Input]
         public string $note,
         #[Input]
         public string $agree,
-        #[Input]
-        public string $__csrf_token, // phpcs:ignore
         #[Input]
         public string|null $submit,
         #[Input]

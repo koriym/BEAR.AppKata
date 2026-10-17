@@ -9,18 +9,13 @@ use SensitiveParameter;
 
 readonly class ResetPasswordInput
 {
-    /**
-     * @psalm-suppress UndefinedAttributeClass
-     * @SuppressWarnings("PHPMD.CamelCaseParameterName")
-     */
+    /** @psalm-suppress UndefinedAttributeClass */
     public function __construct(
         #[Input]
         #[SensitiveParameter]
         public string $password,
         #[Input]
         public string $signature,
-        #[Input]
-        public string $__csrf_token, // phpcs:ignore
         #[Input]
         public string|null $continue,
     ) {

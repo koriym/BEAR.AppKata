@@ -12,7 +12,6 @@ use MyVendor\MyProject\Form\Customer as CustomerForm;
 use MyVendor\MyProject\TemplateEngine\QiqCustomHelpers;
 use MyVendor\MyProject\TemplateEngine\QiqModule;
 use Qiq\Helpers;
-use Ray\WebFormModule\AuraInputModule;
 use Ray\WebFormModule\FormInterface;
 
 use function getenv;
@@ -23,7 +22,8 @@ class HtmlModule extends AbstractAppModule
 {
     protected function configure(): void
     {
-        $this->install(new AuraInputModule());
+        $this->install(new CsrfModule());
+        $this->install(new FormModule());
         $this->bind(Helpers::class)->to(QiqCustomHelpers::class);
         $this->install(
             new QiqModule(

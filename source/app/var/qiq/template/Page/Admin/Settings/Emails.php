@@ -19,7 +19,7 @@
                 {{ endif }}
             </div>
             <div class="flex-none text-right">
-                <form method="post" action="{{= url('/admin/settings/emails/delete', ['id' => $adminEmail->id]) }}">
+                {{= form(action: url('/admin/settings/emails/delete', ['id' => $adminEmail->id])) }}
                     <button type="submit" value="削除" class="text-rose-500 focus:outline-none">
                         {{= render('partials/Admin/InlineIcon', ['name' => 'trash']) }}
                     </button>
@@ -31,7 +31,7 @@
 </div>
 {{ endif }}
 
-<form method="post">
+{{= form() }}
     <label class="block mt-5">
         <span class="block text-sm font-sans font-normal text-slate-700 select-none">Email</span>
         {{= adminText(form: $form, input: 'emailAddress') }}
@@ -39,7 +39,6 @@
     </label>
     <label class="block mt-5 text-center">
         {{= adminSubmit(form: $form, input: 'create', attribs: ['value' => 'Create', 'data-submit-once' => '1']) }}
-        {{= csrfTokenField(form: $form) }}
     </label>
 </form>
 {{ endBlock () }}

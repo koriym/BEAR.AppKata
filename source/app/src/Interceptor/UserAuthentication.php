@@ -19,6 +19,7 @@ use Aura\Auth\Exception\PasswordIncorrect as AuraPasswordIncorrect;
 use Aura\Auth\Exception\PasswordMissing as AuraPasswordMissing;
 use Aura\Auth\Exception\UsernameMissing as AuraUsernameMissing;
 use Aura\Auth\Exception\UsernameNotFound as AuraUsernameNotFound;
+use Aura\Session\CsrfToken;
 use BEAR\Resource\NullRenderer;
 use BEAR\Resource\ResourceObject;
 use DateTimeImmutable;
@@ -44,6 +45,7 @@ readonly class UserAuthentication implements MethodInterceptor
 {
     public function __construct(
         private UserAuthenticatorInterface $authenticator,
+        private CsrfToken $csrfToken,
         #[Named('user')]
         private LoggerInterface $logger,
         private SessionInterface $session,
@@ -137,6 +139,7 @@ readonly class UserAuthentication implements MethodInterceptor
                 );
             }
 
+            $this->csrfToken->regenerateValue();
             $user = $this->userRepository->findByUsername($input->username);
             $user = $user->withLoggedIn(new DateTimeImmutable());
             $this->userRepository->store($user);

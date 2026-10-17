@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace MyVendor\MyProject\Form\Admin;
 
 use AppCore\Infrastructure\Query\BadPasswordQueryInterface;
-use MyVendor\MyProject\Form\AntiCsrfSetter;
 use MyVendor\MyProject\Form\ExtendedForm;
 use Ray\Di\Di\Inject;
 use stdClass;
@@ -13,8 +12,6 @@ use stdClass;
 /** @psalm-suppress PropertyNotSetInConstructor */
 class AdminPasswordResetForm extends ExtendedForm
 {
-    use AntiCsrfSetter;
-
     private BadPasswordQueryInterface $badPasswordQuery;
 
     #[Inject]

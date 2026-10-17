@@ -9,10 +9,7 @@ use SensitiveParameter;
 
 readonly class UpdatePasswordInput
 {
-    /**
-     * @psalm-suppress UndefinedAttributeClass
-     * @SuppressWarnings("PHPMD.CamelCaseParameterName")
-     */
+    /** @psalm-suppress UndefinedAttributeClass */
     public function __construct(
         #[Input]
         #[SensitiveParameter]
@@ -23,8 +20,6 @@ readonly class UpdatePasswordInput
         #[Input]
         #[SensitiveParameter]
         public string $passwordConfirmation,
-        #[Input]
-        public string $__csrf_token, // phpcs:ignore
         #[Input]
         public string|null $update,
     ) {

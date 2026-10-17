@@ -9,18 +9,13 @@ use SensitiveParameter;
 
 readonly class LoginUserInput
 {
-    /**
-     * @psalm-suppress UndefinedAttributeClass
-     * @SuppressWarnings("PHPMD.CamelCaseParameterName")
-     */
+    /** @psalm-suppress UndefinedAttributeClass */
     public function __construct(
         #[Input]
         public string $username,
         #[Input]
         #[SensitiveParameter]
         public string $password,
-        #[Input]
-        public string $__csrf_token, // phpcs:ignore
         #[Input]
         public string|null $login,
     ) {

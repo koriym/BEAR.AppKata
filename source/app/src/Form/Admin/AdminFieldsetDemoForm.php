@@ -7,15 +7,12 @@ namespace MyVendor\MyProject\Form\Admin;
 use Aura\Input\Builder;
 use MyVendor\MyProject\Form\Admin\Fieldset\AddressFieldset;
 use MyVendor\MyProject\Form\Admin\Fieldset\AddressFilter;
-use MyVendor\MyProject\Form\AntiCsrfSetter;
 use MyVendor\MyProject\Form\ExtendedForm;
 use stdClass;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 class AdminFieldsetDemoForm extends ExtendedForm
 {
-    use AntiCsrfSetter;
-
     public function init(): void
     {
         $this->builder = new Builder([

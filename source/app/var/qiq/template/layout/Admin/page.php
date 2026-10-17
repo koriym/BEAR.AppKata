@@ -23,7 +23,7 @@
                 </a>
                 <div class="relative hidden lg:flex items-center ml-auto">
                     <div class="flex items-center border-l border-slate-200 ml-6 pl-6 dark:border-slate-800">
-                        <form method="post" action="/admin/logout">
+                        {{= form(action: '/admin/logout') }}
                             <button>
                                 {{= render('partials/Admin/InlineIcon', ['name' => 'arrow-left-on-rectangle']) }}
                             </button>

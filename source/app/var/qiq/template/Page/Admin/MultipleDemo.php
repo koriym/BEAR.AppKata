@@ -3,7 +3,7 @@
 {{ setBlock ('title') }}Multiple Demo | {{ parentBlock () }}{{ endBlock () }}
 
 {{ setBlock ('body_content') }}
-<form method="post">
+{{= form() }}
     <div class="mt-5">
         <label class="block">
             <span class="block text-sm font-sans font-normal text-slate-700">Fruits</span>
@@ -27,7 +27,6 @@
         </label>
         <label class="block mt-5 text-center">
             {{= adminSubmit(form: $form, input: 'submit', attribs: ['value' => 'SEND', 'data-submit-once' => '1']) }}
-            {{= csrfTokenField(form: $form) }}
         </label>
     </div>
 </form>
