@@ -15,9 +15,9 @@ use Throwable;
 final class QiqErrorPage extends ResourceObject
 {
     public function __construct(
-        private readonly Throwable $e,
+        Throwable $e,
         private readonly string $errorViewName,
-        private readonly RouterMatch $request,
+        RouterMatch $request,
         private readonly Template $template,
     ) {
         [$code, $message] = $this->status($e);
