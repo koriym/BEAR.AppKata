@@ -24,6 +24,7 @@ use Ray\WebFormModule\FormInterface;
 use ReflectionProperty;
 
 use function array_keys;
+use function iterator_to_array;
 use function str_starts_with;
 use function strlen;
 use function substr;
@@ -102,6 +103,12 @@ final class CsrfProtectionTest extends TestCase
 
             yield $name => [$name];
         }
+    }
+
+    /** Guards against the data provider silently yielding nothing, which PHPUnit only warns about. */
+    public function testFormNamesAreEnumerated(): void
+    {
+        $this->assertNotEmpty(iterator_to_array(self::formNames()));
     }
 
     #[DataProvider('formNames')]
