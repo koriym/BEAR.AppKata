@@ -4,14 +4,11 @@ declare(strict_types=1);
 
 namespace MyVendor\MyProject\Form\Customer;
 
-use MyVendor\MyProject\Form\AntiCsrfSetter;
 use MyVendor\MyProject\Form\ExtendedForm;
 
 /** @psalm-suppress PropertyNotSetInConstructor */
 class UserLoginForm extends ExtendedForm
 {
-    use AntiCsrfSetter;
-
     public function init(): void
     {
         /** @psalm-suppress UndefinedMethod */

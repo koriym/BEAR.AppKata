@@ -28,6 +28,7 @@
         {{ endif }}
         <label class="block mt-5 text-center">
             {{= adminSubmit(form: $form, input: 'submit', attribs: ['value' => 'UPLOAD', 'data-submit-once' => '1']) }}
+            {{= csrfTokenField(form: $form) }}
         </label>
     </div>
 </form>

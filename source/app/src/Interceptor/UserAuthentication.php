@@ -19,6 +19,7 @@ use Aura\Auth\Exception\PasswordIncorrect as AuraPasswordIncorrect;
 use Aura\Auth\Exception\PasswordMissing as AuraPasswordMissing;
 use Aura\Auth\Exception\UsernameMissing as AuraUsernameMissing;
 use Aura\Auth\Exception\UsernameNotFound as AuraUsernameNotFound;
+use Aura\Session\Session as AuraSession;
 use BEAR\Resource\NullRenderer;
 use BEAR\Resource\ResourceObject;
 use DateTimeImmutable;
@@ -43,6 +44,7 @@ use function call_user_func;
 readonly class UserAuthentication implements MethodInterceptor
 {
     public function __construct(
+        private AuraSession $auraSession,
         private UserAuthenticatorInterface $authenticator,
         #[Named('user')]
         private LoggerInterface $logger,
@@ -89,6 +91,7 @@ readonly class UserAuthentication implements MethodInterceptor
         if ($input->isValid()) {
             try {
                 $this->authenticator->login($input->username, $input->password);
+                $this->auraSession->getCsrfToken()->regenerateValue();
                 $this->logger->log('[logged] ' . $input->username);
             } catch (AuraUsernameMissing $usernameMissing) {
                 return call_user_func(

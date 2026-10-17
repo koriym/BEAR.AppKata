@@ -21,6 +21,7 @@ use Aura\Auth\Exception\PasswordIncorrect as AuraPasswordIncorrect;
 use Aura\Auth\Exception\PasswordMissing as AuraPasswordMissing;
 use Aura\Auth\Exception\UsernameMissing as AuraUsernameMissing;
 use Aura\Auth\Exception\UsernameNotFound as AuraUsernameNotFound;
+use Aura\Session\Session as AuraSession;
 use BEAR\Resource\NullRenderer;
 use BEAR\Resource\ResourceObject;
 use DateTimeImmutable;
@@ -52,6 +53,7 @@ readonly class AdminAuthentication implements MethodInterceptor
     public function __construct(
         #[Named('admin_auth_attempt_interval')]
         private string $attemptInterval,
+        private AuraSession $auraSession,
         private AdminAuthenticatorInterface $authenticator,
         #[Named('admin')]
         private LoggerInterface $logger,
@@ -157,6 +159,7 @@ readonly class AdminAuthentication implements MethodInterceptor
             $this->logger->log('[logged] ' . $input->username);
 
             $this->throttlingHandler->clear($throttleKey);
+            $this->auraSession->getCsrfToken()->regenerateValue();
 
             $continue = $this->session->get('admin:continue', '');
             $expire = (new DateTimeImmutable())->modify('+5 min')->getTimestamp();
@@ -261,6 +264,8 @@ readonly class AdminAuthentication implements MethodInterceptor
                     ),
                 );
             }
+
+            $this->auraSession->getCsrfToken()->regenerateValue();
 
             $continue = $this->session->get('admin:protect:continue', '');
             $expire = (new DateTimeImmutable())->modify('+5 min')->getTimestamp();

@@ -5,6 +5,12 @@ declare(strict_types=1);
 use MyVendor\MyProject\Bootstrap;
 
 session_name('bear-app');
+session_set_cookie_params([
+    'httponly' => true,
+    'samesite' => 'Lax',
+    'secure' => (! empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+        || ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? '') === 'https',
+]);
 
 // NOTE: Enable the following if you want to POST from external sites.
 //$PUBLIC_HOSTS = ['example.com', 'www.example.com', 'stage.example.com'];

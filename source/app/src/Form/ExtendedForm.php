@@ -7,6 +7,7 @@ namespace MyVendor\MyProject\Form;
 use Aura\Filter\FilterFactory;
 use Aura\Html\Helper\Input\AbstractInput;
 use Aura\Html\HelperLocatorFactory;
+use Aura\Input\AntiCsrfInterface;
 use Aura\Input\BuilderInterface;
 use Aura\Input\Collection;
 use Aura\Input\Fieldset;
@@ -31,6 +32,14 @@ abstract class ExtendedForm extends AbstractForm implements SubmitInterface
         HelperLocatorFactory $helperFactory,
     ): void {
         parent::setBaseDependencies($builder, $filterFactory, $helperFactory);
+    }
+
+    /** Injected for every form so that a form cannot opt out of CSRF validation. */
+    #[Inject]
+    #[Override]
+    public function setAntiCsrf(AntiCsrfInterface $antiCsrf): void
+    {
+        parent::setAntiCsrf($antiCsrf);
     }
 
     #[PostConstruct]
