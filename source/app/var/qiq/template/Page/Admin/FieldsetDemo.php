@@ -3,7 +3,7 @@
 {{ setBlock ('title') }}Fieldset Demo | {{ parentBlock () }}{{ endBlock () }}
 
 {{ setBlock ('body_content') }}
-<form method="post">
+{{= form() }}
     <div class="mt-5">
         <div class="mt-5">
             <h2 class="inline-block text-xl sm:text-2xl font-extrabold text-slate-800 tracking-tight">Home</h2>
@@ -93,7 +93,6 @@
         </label>
         <label class="block mt-5 text-center">
             {{= adminSubmit(form: $form, input: 'submit', attribs: ['value' => 'SEND', 'data-submit-once' => '1']) }}
-            {{= csrfTokenField(form: $form) }}
         </label>
     </div>
 </form>

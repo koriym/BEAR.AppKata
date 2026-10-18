@@ -5,14 +5,19 @@ declare(strict_types=1);
 namespace MyVendor\MyProject\TemplateEngine;
 
 use Aura\Html\Helper\Input\AbstractInput;
+use Aura\Session\CsrfToken;
 use BEAR\Sunday\Extension\Router\RouterInterface;
 use MyVendor\MyProject\Form\ExtendedFieldset;
 use MyVendor\MyProject\Form\ExtendedForm;
+use MyVendor\MyProject\Interceptor\CsrfGuard;
+use Override;
 use Qiq\Helper\Html\HtmlHelpers;
+use Stringable;
 
 use function array_merge;
 use function is_string;
 use function sprintf;
+use function strtolower;
 
 /**
  * @SuppressWarnings("PHPMD.ExcessiveClassComplexity")
@@ -21,10 +26,42 @@ use function sprintf;
 class QiqCustomHelpers extends HtmlHelpers
 {
     /** @SuppressWarnings("PHPMD.LongVariable") */
-    public function __construct(private readonly RouterInterface $router)
-    {
+    public function __construct(
+        private readonly RouterInterface $router,
+        private readonly CsrfToken $csrfToken,
+    ) {
         parent::__construct(null);
     }
+
+    /**
+     * Opens a form. Templates use this instead of a literal <form> tag so that
+     * every state-changing form carries the CSRF token without asking for it.
+     *
+     * @param array<scalar|Stringable|array<scalar|Stringable|null>|null> $attr
+     * @param scalar|Stringable|array<scalar|Stringable|null>|null        $__attr
+     *
+     * @SuppressWarnings("PHPMD.CamelCaseParameterName")
+     * @SuppressWarnings("PHPMD.CamelCaseVariableName")
+     */
+    // phpcs:disable Squiz.NamingConventions.ValidVariableName.NotCamelCaps
+
+    #[Override]
+    public function form(
+        string $method = 'post',
+        string $action = '',
+        string $enctype = 'application/x-www-form-urlencoded',
+        array $attr = [],
+        mixed ...$__attr,
+    ): string {
+        $tag = parent::form($method, $action, $enctype, $attr, ...$__attr);
+        if (strtolower($method) === 'get') {
+            return $tag;
+        }
+
+        return $tag . $this->hiddenField(CsrfGuard::FIELD, $this->csrfToken->getValue());
+    }
+
+    // phpcs:enable
 
     /**
      * @SuppressWarnings("PHPMD.LongVariable")
@@ -395,11 +432,6 @@ class QiqCustomHelpers extends HtmlHelpers
         ];
 
         return $form->widget($spec, array_merge($defaultAttribs, $attribs));
-    }
-
-    public function csrfTokenField(ExtendedForm $form): AbstractInput
-    {
-        return $form->widget($form->get('__csrf_token'));
     }
 
     /** @param array<string, mixed> $params */

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace MyVendor\MyProject\Form\Admin;
 
-use MyVendor\MyProject\Form\AntiCsrfSetter;
 use MyVendor\MyProject\Form\ExtendedForm;
 
 /**
@@ -13,8 +12,6 @@ use MyVendor\MyProject\Form\ExtendedForm;
  */
 class AdminContactDemoForm extends ExtendedForm
 {
-    use AntiCsrfSetter;
-
     public function init(): void
     {
         /** @psalm-suppress UndefinedMethod */

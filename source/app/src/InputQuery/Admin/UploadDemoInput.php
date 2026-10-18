@@ -11,10 +11,7 @@ use Ray\InputQuery\Attribute\InputFile;
 
 readonly class UploadDemoInput
 {
-    /**
-     * @psalm-suppress UndefinedAttributeClass
-     * @SuppressWarnings("PHPMD.CamelCaseParameterName")
-     */
+    /** @psalm-suppress UndefinedAttributeClass */
     public function __construct(
         #[InputFile(
             maxSize: 1024 * 1024, // 1MB

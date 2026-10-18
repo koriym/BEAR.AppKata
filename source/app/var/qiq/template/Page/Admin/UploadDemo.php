@@ -3,7 +3,7 @@
 {{ setBlock ('title') }}Upload Demo | {{ parentBlock () }}{{ endBlock () }}
 
 {{ setBlock ('body_content') }}
-<form method="post" enctype="multipart/form-data">
+{{= form(enctype: 'multipart/form-data') }}
     <div class="mt-5">
         <label class="block">
             <span class="block text-sm font-thin text-slate-500 tracking-wide">Image file</span>

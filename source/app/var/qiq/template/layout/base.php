@@ -13,6 +13,7 @@
     {{= getBlock () ~}}
     {{ setBlock ('head_scripts') }}
     <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+    {{= getBlock () ~}}
 </head>
 <body class="bg-slate-50 text-slate-700 tracking-wide selection:bg-fuchsia-300 selection:text-fuchsia-900">
 {{= getContent() }}

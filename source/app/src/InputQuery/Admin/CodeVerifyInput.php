@@ -8,17 +8,12 @@ use Ray\InputQuery\Attribute\Input;
 
 readonly class CodeVerifyInput
 {
-    /**
-     * @psalm-suppress UndefinedAttributeClass
-     * @SuppressWarnings("PHPMD.CamelCaseParameterName")
-     */
+    /** @psalm-suppress UndefinedAttributeClass */
     public function __construct(
         #[Input]
         public string $uuid,
         #[Input]
         public string $code,
-        #[Input]
-        public string $__csrf_token, // phpcs:ignore
         #[Input]
         public string|null $continue,
     ) {

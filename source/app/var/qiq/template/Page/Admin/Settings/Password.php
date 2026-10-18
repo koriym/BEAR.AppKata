@@ -5,7 +5,7 @@
     <div class="relative w-96 h-min p-8 rounded-xl bg-white shadow-[0_1px_3px_rgba(15,23,42,0.03),0_1px_2px_rgba(15,23,42,0.06)] ring-1 ring-slate-600/[0.04]">
         <h2 class="text-xl text-center tracking-widest font-sans font-bold">Password</h2>
 
-        <form method="post">
+        {{= form() }}
             {{ if (isset($authError) && $authError): }}
             {{= render('partials/Admin/AlertError', ['text' => 'Authentication error']) }}
             {{ endif }}
@@ -27,7 +27,6 @@
                 </label>
                 <label class="block mt-5 text-center">
                     {{= adminSubmit(form: $form, input: 'update', attribs: ['value' => 'Update password', 'data-submit-once' => '1']) }}
-                    {{= csrfTokenField(form: $form) }}
                 </label>
             </div>
         </form>

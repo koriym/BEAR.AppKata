@@ -26,7 +26,7 @@
             <h2 class="text-xl text-center tracking-widest font-black bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">Bear App</h2>
         </div>
 
-        <form method="post" name="login_form">
+        {{= form(name: 'login_form') }}
             {{ if (isset($authError) && $authError): }}
                 {{= render('partials/Admin/AlertError', ['text' => 'Authentication error']) }}
             {{ endif }}
@@ -55,7 +55,6 @@
                 </div>
                 <label class="block mt-5 text-center">
                     {{= adminSubmit(form: $form, input: 'login', attribs: ['id' => 'login', 'value' => 'LOGIN', 'disabled' => 'disabled', 'data-submit-once' => '1']) }}
-                    {{= csrfTokenField(form: $form) }}
                 </label>
             </div>
         </form>

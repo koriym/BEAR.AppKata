@@ -14,14 +14,13 @@ use Override;
 use Ray\Di\Di\Inject;
 use Ray\Di\Di\PostConstruct;
 use Ray\WebFormModule\AbstractForm;
-use Ray\WebFormModule\SubmitInterface;
 
 use function array_merge;
 use function assert;
 use function is_array;
 
 /** @SuppressWarnings("PHPMD.NumberOfChildren") */
-abstract class ExtendedForm extends AbstractForm implements SubmitInterface
+abstract class ExtendedForm extends AbstractForm
 {
     #[Inject]
     #[Override]
@@ -88,20 +87,5 @@ abstract class ExtendedForm extends AbstractForm implements SubmitInterface
         }
 
         return $isValid;
-    }
-
-    /**
-     * @return array<string, mixed>
-     *
-     * @psalm-suppress InvalidReturnType
-     * @psalm-suppress InvalidReturnStatement
-     *
-     * @SuppressWarnings("PHPMD.Superglobals")
-     *
-     * @deprecated
-     */
-    public function submit(): array
-    {
-        return $_POST;
     }
 }

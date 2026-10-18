@@ -8,13 +8,8 @@ use Ray\InputQuery\Attribute\Input;
 
 readonly class DeleteInput
 {
-    /**
-     * @psalm-suppress UndefinedAttributeClass
-     * @SuppressWarnings("PHPMD.CamelCaseParameterName")
-     */
+    /** @psalm-suppress UndefinedAttributeClass */
     public function __construct(
-        #[Input]
-        public string $__csrf_token, // phpcs:ignore
         #[Input]
         public string|null $continue,
     ) {
